@@ -12,10 +12,11 @@ nav{
     top: 0px;
     left: 0px;
     z-index: 1;
-    padding: 20px;
+    padding: 20px 0px;
     li{
       list-style: none;
-      margin-right: 100px;
+      margin-left: 20px;
+      margin-right: 80px;
       cursor: pointer;
       // display: inline-block;
       &.nav-close{
@@ -49,6 +50,7 @@ nav{
       right: 0px;
       padding: 0px;
       li{
+        margin-left: 0px;
         margin-right:0px;
         padding: 25px 30px;
         &:hover{
