@@ -8,8 +8,10 @@
   display: flex !important;
 }
 .my-menu-icon{
-  fill: #111;
+  // fill: #111;
+  fill: #747272;
   &:hover{
+    // fill: #a1a0a0;
     fill: #a1a0a0;
   }
 }
