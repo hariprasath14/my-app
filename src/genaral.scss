@@ -1,0 +1,21 @@
+.d-block{
+  display: block !important;
+}
+.d-none{
+  display: none !important;
+}
+.d-flex{
+  display: flex !important;
+}
+.my-menu-icon{
+  fill: #111;
+  &:hover{
+    fill: #a1a0a0;
+  }
+}
+.my-menu-close-icon{
+  fill: white;
+  &:hover{
+    fill: darkgrey;
+  }
+}

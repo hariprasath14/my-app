@@ -1,0 +1,60 @@
+body {
+    max-width: 1920px;
+    margin: 0  auto;
+    background-color: #111;
+    min-width: 300px;
+    cursor:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+    // cursor:url("http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif"), auto;
+}
+.profile-container{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    // background-image: url(./images/me.jpg);
+    // background-attachment: fixed;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: top;
+    &::after{
+        content: "";
+        background: linear-gradient(to top, #111, #0000, #0000, #0000, #0000);
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        z-index: 1;
+    }
+    .profile-pic{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+}
+
+
+  .waviy {
+    // position: relative;
+    position: absolute;
+    bottom: 15px;
+    left: calc(50% - 135px );
+    z-index: 2;
+
+  }
+  .waviy span {
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    animation: flip 4s infinite;
+    animation-delay: calc(.3s * var(--i))
+  }
+  @keyframes flip {
+    0%,80% {
+      transform: rotateY(360deg) 
+    }
+  }
