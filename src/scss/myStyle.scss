@@ -25,6 +25,7 @@ body {
         bottom: 0px;
         left: 0px;
         z-index: 1;
+        pointer-events: none;
     }
     .profile-pic{
         display: block;
