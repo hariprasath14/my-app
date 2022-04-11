@@ -139,3 +139,10 @@ function Home() {
   );
 }
 export default Home;
+
+
+// https://csshint.com/html-css-play-pause-button/
+// https://codepen.io/alongequeue/pen/weWoLv
+
+
+// https://codepen.io/arickle/pen/XKjMZY
