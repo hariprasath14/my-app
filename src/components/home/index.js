@@ -49,7 +49,7 @@ function Home() {
       <Nav/>
       <div className='d-flex profile-container'>
         <img src={myImage} className="profile-pic" />
-        <div class="waviy">
+        <div className="waviy">
           <span style={{"--i":"1"}}>H</span>
           <span style={{"--i":"2"}}>A</span>
           <span style={{"--i":"3"}}>R</span>
