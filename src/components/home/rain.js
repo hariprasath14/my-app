@@ -34,11 +34,9 @@ function Home() {
     
     const [audio] = useState(new Audio(gunFireMp3));
     const [hi,sethi] = useState(false);
-    const [increment,setincrement] = useState(0);
-    const [randoHundo,setrandoHundo] = useState(0);
-    const [randoFiver,setrandoFiver] = useState(0);
-    let intervalId = useRef(null)
-
+    const [frontRow,setfrontRow] = useState([]);
+    const [backRow,setbackRow] = useState([]);
+    
     useEffect(() => {
         hi?audio.play():audio.pause()
       },
@@ -49,34 +47,29 @@ function Home() {
         return () => {
             audio.removeEventListener('ended', () => sethi(false));
         };
-        
     }, []);
 
     const makeItRain =(e)=> {
       var increment = 0;
-      intervalId.current = window.setInterval(() => {
-        console.log(increment);
-        if (increment < 100) {
-            var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-            //random number between 5 and 2
-            var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-            //increment
-            setTimeout(() => {
-            increment += randoFiver;
-              
-            }, 1000);
-            setrandoHundo(randoHundo)
-            setrandoFiver(randoFiver)
-            setincrement(increment)
-        }else{
-          clearInterval(intervalId.current)
-        }
-    }, 1000);
+      while(increment<100){
+          let randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+          //random number between 5 and 2
+          let randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+          //increment
+          let incrementValue = increment+randoFiver;
+          increment = incrementValue;
+          console.log(incrementValue+randoFiver,";")
+
+          setfrontRow(prevfrontRow=>[...prevfrontRow,<div class="drop" style={{left: `${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`, animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
+            <div class="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+            <div class="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+          </div>])            
+          setbackRow(prevbackRow=>[...prevbackRow,<div class="drop" style={{right:`${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`,  animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
+            <div class="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+            <div class="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+          </div>])
+      }
     }
-    
-    
-
-
   return (
     <>
       <Nav/>
@@ -99,38 +92,31 @@ function Home() {
       </div>
       <div className="App">
         <header className="App-header">
-          
-                    
-          
-          
-          
+        
+
           <div class="rain-flow back-row-toggle splat-toggle">
             <div class="rain front-row">
-              {increment>0&&<div class="drop" style={{left: `${increment}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`, animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
-                <div class="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-                <div class="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-              </div>}
+                {frontRow.map((drop)=>{
+                  return drop
+                })}
             </div>
             <div class="rain back-row">
-             {increment>0&&<div class="drop" style={{right:`${increment}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`,  animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
-                <div class="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-                <div class="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-              </div>}
+                {backRow.map((drop)=>{
+                  return drop
+                })}
             </div>
           </div>
-          
-          
-          
-          
-
-          
+            
+          <p onClick={(e)=>makeItRain(e)}>Play</p>
+            
           <p>
             Page
           </p>
           <p
-            className="App-link"
-            onClick={(e)=>makeItRain(e)}
-          >
+            href="#"
+            rel="noopener noreferrer"
+            onClick={()=>sethi(!hi)}
+            className="App-link mt-5 cursor-pointer">
             In Construction
           </p>
         </header>
