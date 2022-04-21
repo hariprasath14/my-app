@@ -3,7 +3,6 @@ import '../../App.css';
 import '../../scss/home.scss';
 import myImage from '../../assets/images/me.jpg'
 import gunFireMp3 from '../../assets/audio/bullet.mp3'
-import '../../scss/myStyle.scss'
 import '../../scss/genaral.scss'
 import Nav from '../navbar/Nav';
 
@@ -60,13 +59,13 @@ function Home() {
           increment = incrementValue;
           console.log(incrementValue+randoFiver,";")
 
-          setfrontRow(prevfrontRow=>[...prevfrontRow,<div class="drop" style={{left: `${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`, animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
-            <div class="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-            <div class="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+          setfrontRow(prevfrontRow=>[...prevfrontRow,<div className="drop" style={{left: `${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`, animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
+            <div className="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+            <div className="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
           </div>])            
-          setbackRow(prevbackRow=>[...prevbackRow,<div class="drop" style={{right:`${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`,  animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
-            <div class="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-            <div class="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+          setbackRow(prevbackRow=>[...prevbackRow,<div className="drop" style={{right:`${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`,  animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
+            <div className="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+            <div className="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
           </div>])
       }
     }
@@ -94,31 +93,31 @@ function Home() {
         <header className="App-header">
         
 
-          <div class="rain-flow back-row-toggle splat-toggle">
-            <div class="rain front-row">
+          <div className="rain-flow back-row-toggle splat-toggle">
+            <div className="rain front-row">
                 {frontRow.map((drop)=>{
                   return drop
                 })}
             </div>
-            <div class="rain back-row">
+            <div className="rain back-row">
                 {backRow.map((drop)=>{
                   return drop
                 })}
             </div>
           </div>
             
-          <p onClick={(e)=>makeItRain(e)}>Play</p>
+          <p className='cursor-pointer px-4' onClick={(e)=>makeItRain(e)}>Play</p>
             
           <p>
             Page
           </p>
-          <p
+          <a
             href="#"
             rel="noopener noreferrer"
             onClick={()=>sethi(!hi)}
             className="App-link mt-5 cursor-pointer">
             In Construction
-          </p>
+          </a>
         </header>
       </div>
     </>

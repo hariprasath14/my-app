@@ -2,16 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #111;
@@ -28,18 +18,69 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.profile-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  // background-image: url(./images/me.jpg);
+  // background-attachment: fixed;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: top;
+  &::after {
+    content: "";
+    background: linear-gradient(to top, #111, #0000, #0000, #0000, #0000);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+    pointer-events: none;
   }
-  to {
-    transform: rotate(360deg);
+
+  .profile-pic {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 }
 
-.rain-flow{
+
+.waviy {
+  // position: relative;
+  position: absolute;
+  bottom: 15px;
+  left: calc(50% - 135px);
+  z-index: 2;
+
+}
+
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  animation: flip 4s infinite;
+  animation-delay: calc(.3s * var(--i))
+}
+
+@keyframes flip {
+
+  0%,
+  80% {
+    transform: rotateY(360deg)
+  }
+}
+
+.rain-flow {
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   position: relative;
   overflow: hidden;
   background: linear-gradient(to bottom, #202020, #111119);
@@ -77,9 +118,11 @@
   0% {
     transform: translateY(0vh);
   }
+
   75% {
     transform: translateY(90vh);
   }
+
   100% {
     transform: translateY(90vh);
   }
@@ -98,12 +141,15 @@
   0% {
     opacity: 1;
   }
+
   65% {
     opacity: 1;
   }
+
   75% {
     opacity: 0;
   }
+
   100% {
     opacity: 0;
   }
@@ -130,14 +176,17 @@
     opacity: 1;
     transform: scale(0);
   }
+
   80% {
     opacity: 1;
     transform: scale(0);
   }
+
   90% {
     opacity: 1;
     transform: scale(1);
   }
+
   100% {
     opacity: 1;
     transform: scale(1.5);
