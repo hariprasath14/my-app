@@ -65,10 +65,13 @@
 .waviy {
   // position: relative;
   position: absolute;
-  bottom: 15px;
+  bottom: calc(50% - 30px);
   left: calc(50% - 135px);
   z-index: 3;
-
+  visibility: hidden;
+  opacity: 0;
+  transition: 3s ease-in-out;
+  transition-delay: 3s;
 }
 
 .waviy span {
