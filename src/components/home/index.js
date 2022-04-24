@@ -67,13 +67,13 @@ function Home() {
   //     };
   // }, []);
 
-  // const fetchOnScroll=(e)=>{
-  //  if(e.target.scrollTop>300){
-  //   sethideRain(true)
-  //  }else{
-  //   sethideRain(false)
-  //  }
-  // }
+  const fetchOnScroll=(e)=>{
+   if(e.target.scrollTop>100){
+    sethideRain(true)
+   }else{
+    sethideRain(false)
+   }
+  }
     const makeThunder=()=>{
       setTimeout(() => {
         makeItRain();
@@ -113,7 +113,7 @@ function Home() {
     }
   return (
     <div className='home-container' 
-    // onScroll={(e)=>{fetchOnScroll(e);}}
+    onScroll={(e)=>{fetchOnScroll(e);}}
     >
       {/* <Nav/> */}
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
@@ -132,12 +132,12 @@ function Home() {
           <span style={{"--i":"11"}}>T</span>
           <span style={{"--i":"12"}}>H</span>
         </div>
-        <div className={`rain front-row ${hideRain?"opacity-0":""}`}>
+        <div className={`rain front-row ${hideRain?"hide-spalt":""}`}>
                 {frontRow.map((drop)=>{
                   return drop
                 })}
             </div>
-            <div className={`rain back-row ${hideRain?"opacity-0":""}`}>
+            <div className={`rain back-row ${hideRain?"hide-spalt":""}`}>
                 {backRow.map((drop)=>{
                   return drop
                 })}
