@@ -9,7 +9,6 @@ import Nav from '../navbar/Nav';
 const useAudio = url => {
     const [audio] = useState(new Audio(url));
     const [playing, setPlaying] = useState(false);
-  
     const toggle = () => setPlaying(!playing);
   
     useEffect(() => {
@@ -35,7 +34,7 @@ function Home() {
     const [hi,sethi] = useState(false);
     const [frontRow,setfrontRow] = useState([]);
     const [backRow,setbackRow] = useState([]);
-    
+    const [thunder, setThunder] = useState();
     useEffect(() => {
         hi?audio.play():audio.pause()
       },
@@ -47,7 +46,11 @@ function Home() {
             audio.removeEventListener('ended', () => sethi(false));
         };
     }, []);
-
+    const makeThunder=()=>{
+      setTimeout(() => {
+        setThunder(true)
+      }, 5000);
+    }
     const makeItRain =(e)=> {
       var increment = 0;
       while(increment<100){
@@ -72,9 +75,9 @@ function Home() {
   return (
     <>
       <Nav/>
-      <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle'>
-        <img src={myImage} className="profile-pic" />
-        <div className="waviy">
+      <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
+        <img src={myImage} className={`profile-pic ${frontRow?.length>0?"filter-profile":""}  ${thunder?"thunder":""}`} />
+        <div className="waviy" onClick={(e)=>{makeItRain(e);makeThunder()}}>
           <span style={{"--i":"1"}}>H</span>
           <span style={{"--i":"2"}}>A</span>
           <span style={{"--i":"3"}}>R</span>
