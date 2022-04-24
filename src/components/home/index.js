@@ -3,6 +3,8 @@ import '../../App.css';
 import '../../scss/home.scss';
 import myImage from '../../assets/images/me.jpg'
 import gunFireMp3 from '../../assets/audio/bullet.mp3'
+import johnyMp3 from '../../assets/audio/johny.mp3'
+import thunderMp3 from '../../assets/audio/thunder.mp3'
 import '../../scss/genaral.scss'
 import Nav from '../navbar/Nav';
 
@@ -31,21 +33,47 @@ const useAudio = url => {
 function Home() {
     
     const [audio] = useState(new Audio(gunFireMp3));
-    const [hi,sethi] = useState(false);
+    const [johnyBGM] = useState(new Audio(johnyMp3));
+    const [thunderBGM] = useState(new Audio(thunderMp3));
+    const [playjohny,setPlayJohny] = useState(false);
+    const [hideRain, sethideRain] = useState(false);
+    const [gunFire,setgunFire] = useState(false);
     const [frontRow,setfrontRow] = useState([]);
     const [backRow,setbackRow] = useState([]);
-    const [thunder, setThunder] = useState();
+    const [thunder, setThunder] = useState(false);
     useEffect(() => {
-        hi?audio.play():audio.pause()
+      gunFire?audio.play():audio.pause()
       },
-      [hi] 
+      [gunFire] 
     )
     useEffect(() => {
-        audio.addEventListener('ended', () => sethi(false));
+        audio.addEventListener('ended', () => setgunFire(false));
         return () => {
-            audio.removeEventListener('ended', () => sethi(false));
+            audio.removeEventListener('ended', () => setgunFire(false));
         };
     }, []);
+    useEffect(() => {
+      playjohny?thunderBGM.play():thunderBGM.pause()
+      setTimeout(() => {
+        playjohny?johnyBGM.play():johnyBGM.pause()
+      }, 3000);
+    },
+    [playjohny] 
+  )
+  // useEffect(() => {
+  //     playjohny.addEventListener('ended', () => setgunFire(false));
+  //     return () => {
+  //         playjohny.removeEventListener('ended', () => setgunFire(false));
+  //     };
+  // }, []);
+
+  // const fetchOnScroll=(e)=>{
+  //  if(e.target.scrollTop>300){
+  //   sethideRain(true)
+  //  }else{
+  //   sethideRain(false)
+  //  }
+  // }
     const makeThunder=()=>{
       setTimeout(() => {
         makeItRain();
@@ -84,11 +112,13 @@ function Home() {
       }
     }
   return (
-    <>
+    <div className='home-container' 
+    // onScroll={(e)=>{fetchOnScroll(e);}}
+    >
       {/* <Nav/> */}
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
         <img src={myImage} className={`profile-pic ${frontRow?.length>0?"filter-profile":""}  ${thunder?"thunder":""}`} />
-        <div  class={`waviy ${frontRow?.length>0?"opacity-100 visible":""}`}>
+        <div  className={`waviy ${frontRow?.length>0?"opacity-100 visible":""}`}>
           <span style={{"--i":"1"}}>H</span>
           <span style={{"--i":"2"}}>A</span>
           <span style={{"--i":"3"}}>R</span>
@@ -102,17 +132,17 @@ function Home() {
           <span style={{"--i":"11"}}>T</span>
           <span style={{"--i":"12"}}>H</span>
         </div>
-        <div className="rain front-row">
+        <div className={`rain front-row ${hideRain?"opacity-0":""}`}>
                 {frontRow.map((drop)=>{
                   return drop
                 })}
             </div>
-            <div className="rain back-row">
+            <div className={`rain back-row ${hideRain?"opacity-0":""}`}>
                 {backRow.map((drop)=>{
                   return drop
                 })}
             </div>
-          <div class={`play-rain ${frontRow?.length>0?" opacity-0 invisible ":""}`}  onClick={(e)=>{makeItRain();makeThunder()}}>
+          <div className={`play-rain ${frontRow?.length>0?"opacity-0 invisible ":""}`}  onClick={(e)=>{makeItRain();makeThunder();setPlayJohny(true)}}>
               Play
           </div> 
       </div>
@@ -127,13 +157,13 @@ function Home() {
           <a
             href="#"
             rel="noopener noreferrer"
-            onClick={()=>sethi(!hi)}
-            className="App-link mt-5 cursor-pointer">
+            onClick={()=>setgunFire(!gunFire)}
+            className="App-link mt-3 cursor-pointer">
             In Construction
           </a>
         </header>
       </div>
-    </>
+    </div>
   );
 }
 export default Home;
