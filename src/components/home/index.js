@@ -48,28 +48,39 @@ function Home() {
     }, []);
     const makeThunder=()=>{
       setTimeout(() => {
+        makeItRain();
+        makeItRain();
+        makeItRain();
+        makeItRain();
+        makeItRain();
+        setTimeout(() => {
+        makeItRain();
+        makeItRain();
+        makeItRain();
+        }, 1000);
         setThunder(true)
       }, 5000);
     }
-    const makeItRain =(e)=> {
-      var increment = 0;
-      while(increment<100){
-          let randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-          //random number between 5 and 2
-          let randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-          //increment
-          let incrementValue = increment+randoFiver;
-          increment = incrementValue;
-          console.log(incrementValue+randoFiver,";")
-
-          setfrontRow(prevfrontRow=>[...prevfrontRow,<div className="drop" style={{left: `${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`, animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
-            <div className="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-            <div className="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-          </div>])            
-          setbackRow(prevbackRow=>[...prevbackRow,<div className="drop" style={{right:`${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`,  animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
-            <div className="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-            <div className="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
-          </div>])
+    const makeItRain =()=> {
+      if(frontRow?.length<200){
+        var increment = 0;
+        while(increment<100){
+            let randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+            //random number between 5 and 2
+            let randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+            //increment
+            let incrementValue = increment+randoFiver;
+            increment = incrementValue;
+  
+            setfrontRow(prevfrontRow=>[...prevfrontRow,<div className="drop" style={{left: `${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`, animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
+              <div className="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+              <div className="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+            </div>])            
+            setbackRow(prevbackRow=>[...prevbackRow,<div className="drop" style={{right:`${incrementValue}%`, bottom: `${randoFiver + randoFiver - 1 + 100}%`,  animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`,}}>
+              <div className="stem" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+              <div className="splat" style={{animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s`}}></div>
+            </div>])
+        }
       }
     }
   return (
@@ -77,7 +88,7 @@ function Home() {
       <Nav/>
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
         <img src={myImage} className={`profile-pic ${frontRow?.length>0?"filter-profile":""}  ${thunder?"thunder":""}`} />
-        <div className="waviy" onClick={(e)=>{makeItRain(e);makeThunder()}}>
+        <div className="waviy" onClick={(e)=>{makeItRain();makeThunder()}}>
           <span style={{"--i":"1"}}>H</span>
           <span style={{"--i":"2"}}>A</span>
           <span style={{"--i":"3"}}>R</span>
@@ -105,7 +116,7 @@ function Home() {
       <div className="App">
         <header className="App-header">
             
-          <p className='cursor-pointer px-4' onClick={(e)=>makeItRain(e)}>Play</p>
+          {/* <p className='cursor-pointer px-4' onClick={(e)=>{console.log(frontRow, backRow);}}>Play</p> */}
             
           <p>
             Page
