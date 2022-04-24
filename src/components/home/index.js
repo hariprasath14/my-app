@@ -85,7 +85,7 @@ function Home() {
     }
   return (
     <>
-      <Nav/>
+      {/* <Nav/> */}
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
         <img src={myImage} className={`profile-pic ${frontRow?.length>0?"filter-profile":""}  ${thunder?"thunder":""}`} />
         <div className="waviy" onClick={(e)=>{makeItRain();makeThunder()}}>
@@ -112,6 +112,9 @@ function Home() {
                   return drop
                 })}
             </div>
+          <div class="play-rain">
+              Play
+          </div> 
       </div>
       <div className="App">
         <header className="App-header">
