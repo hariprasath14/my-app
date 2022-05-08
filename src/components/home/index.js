@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import '../../App.css';
 import '../../scss/home.scss';
 import myImage from '../../assets/images/me.jpg'
@@ -6,28 +6,28 @@ import gunFireMp3 from '../../assets/audio/bullet.mp3'
 import johnyMp3 from '../../assets/audio/johny.mp3'
 import thunderMp3 from '../../assets/audio/thunder.mp3'
 import '../../scss/genaral.scss'
-import Nav from '../navbar/Nav';
+// import Nav from '../navbar/Nav';
 
-const useAudio = url => {
-  const [audio] = useState(new Audio(url));
-  const [playing, setPlaying] = useState(false);
-  const toggle = () => setPlaying(!playing);
+// const useAudio = url => {
+//   const [audio] = useState(new Audio(url));
+//   const [playing, setPlaying] = useState(false);
+//   const toggle = () => setPlaying(!playing);
 
-  useEffect(() => {
-    playing ? audio.play() : audio.pause();
-  },
-    [playing]
-  );
+//   useEffect(() => {
+//     playing ? audio.play() : audio.pause();
+//   },
+//     [playing]
+//   );
 
-  useEffect(() => {
-    audio.addEventListener('ended', () => setPlaying(false));
-    return () => {
-      audio.removeEventListener('ended', () => setPlaying(false));
-    };
-  }, []);
+//   useEffect(() => {
+//     audio.addEventListener('ended', () => setPlaying(false));
+//     return () => {
+//       audio.removeEventListener('ended', () => setPlaying(false));
+//     };
+//   }, []);
 
-  return [playing, toggle];
-};
+//   return [playing, toggle];
+// };
 
 
 function Home() {
@@ -44,21 +44,21 @@ function Home() {
   useEffect(() => {
     gunFire ? audio.play() : audio.pause()
   },
-    [gunFire]
+    [gunFire,audio]
   )
   useEffect(() => {
     audio.addEventListener('ended', () => setgunFire(false));
     return () => {
       audio.removeEventListener('ended', () => setgunFire(false));
     };
-  }, []);
+  }, [audio]);
   useEffect(() => {
     playjohny ? thunderBGM.play() : thunderBGM.pause()
     setTimeout(() => {
       playjohny ? johnyBGM.play() : johnyBGM.pause()
     }, 3000);
   },
-    [playjohny]
+    [playjohny,thunderBGM,johnyBGM]
   )
   // useEffect(() => {
   //     playjohny.addEventListener('ended', () => setgunFire(false));
@@ -117,7 +117,7 @@ function Home() {
     >
       {/* <Nav/> */}
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
-        <img src={myImage} className={`profile-pic ${frontRow?.length > 0 ? "filter-profile" : ""}  ${thunder ? "thunder" : ""}`} />
+        <img src={myImage} className={`profile-pic ${frontRow?.length > 0 ? "filter-profile" : ""}  ${thunder ? "thunder" : ""}`} alt="" />
         <div className={`waviy ${frontRow?.length > 0 ? "opacity-100 visible" : ""}`}>
           <span style={{ "--i": "1" }}>H</span>
           <span style={{ "--i": "2" }}>A</span>
@@ -154,13 +154,11 @@ function Home() {
           <p>
             Page
           </p>
-          <a
-            href="#"
-            rel="noopener noreferrer"
+          <p
             onClick={() => setgunFire(!gunFire)}
             className="App-link mt-3 cursor-pointer">
             In Construction
-          </a>
+          </p>
         </header>
       </div>
     </div>
