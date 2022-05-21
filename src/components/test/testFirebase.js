@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "../../scss/test.scss";
-import {ref,db,onValue,get,set} from "../firebase/firebase";
+// import {ref,db,onValue,get,set} from "../firebase/firebase";
 const TestFirebse = () => {
-    const [onLight, setonLight] = useState(false);
+    // const [onLight, setonLight] = useState(false);
     const push = (e) => {
     //    set(ref(db, 'light'), e.target.checked);
     }

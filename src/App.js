@@ -1,5 +1,5 @@
 import Home from './components/home';
-import TestFirebse from './components/test/testFirebase';
+// import TestFirebse from './components/test/testFirebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
