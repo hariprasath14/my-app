@@ -6,28 +6,6 @@ import gunFireMp3 from '../../assets/audio/bullet.mp3'
 import johnyMp3 from '../../assets/audio/johny.mp3'
 import thunderMp3 from '../../assets/audio/thunder.mp3'
 import '../../scss/genaral.scss'
-// import Nav from '../navbar/Nav';
-
-// const useAudio = url => {
-//   const [audio] = useState(new Audio(url));
-//   const [playing, setPlaying] = useState(false);
-//   const toggle = () => setPlaying(!playing);
-
-//   useEffect(() => {
-//     playing ? audio.play() : audio.pause();
-//   },
-//     [playing]
-//   );
-
-//   useEffect(() => {
-//     audio.addEventListener('ended', () => setPlaying(false));
-//     return () => {
-//       audio.removeEventListener('ended', () => setPlaying(false));
-//     };
-//   }, []);
-
-//   return [playing, toggle];
-// };
 
 
 function Home() {
@@ -60,13 +38,6 @@ function Home() {
   },
     [playjohny,thunderBGM,johnyBGM]
   )
-  // useEffect(() => {
-  //     playjohny.addEventListener('ended', () => setgunFire(false));
-  //     return () => {
-  //         playjohny.removeEventListener('ended', () => setgunFire(false));
-  //     };
-  // }, []);
-
   const fetchOnScroll = (e) => {
     if (e.target.scrollTop > 100) {
       sethideRain(true)
@@ -142,7 +113,10 @@ function Home() {
             return drop
           })}
         </div>
-        <div className={`play-rain ${frontRow?.length > 0 ? "opacity-0 invisible " : ""}`} onClick={(e) => { makeItRain(); makeThunder(); setPlayJohny(true) }}>
+        <div className={`play-rain ${frontRow?.length > 0 ? "opacity-0 invisible " : ""}`} onClick={(e) => { 
+          makeItRain(); 
+          makeThunder(); 
+          setPlayJohny(true) }}>
           Play
         </div>
       </div>
