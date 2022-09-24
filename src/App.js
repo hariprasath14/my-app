@@ -11,7 +11,7 @@ function App() {
         <Nav />
         <Routes>
           {pageRoutes && pageRoutes.length > 0 && pageRoutes.map((route, i) => {
-            return <Route key={i} path={route.path} element={<route.component />} />
+            return <Route key={i} path={route.path} element={route.component} />
           })}
         </Routes>
       </Router>
