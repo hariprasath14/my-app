@@ -13,11 +13,14 @@ nav{
     left: 0px;
     z-index: 1;
     padding: 20px 0px;
-    color: #acacac;
     li{
       list-style: none;
+      a{    
+      display: block;
       margin-left: 20px;
       margin-right: 80px;
+      color: #acacac;
+      text-decoration: none;
       cursor: pointer;
       // display: inline-block;
       &.nav-close{
@@ -26,24 +29,23 @@ nav{
           cursor: pointer;
         }
       }
+      }
     }
   }
   .nav-menu{
     position: absolute;
     right: 0px;
     top: 0px;
-    margin: 30px;
+    margin: 25px 30px;
     display: none;
-    cursor: pointer;
   }
 }
 
-@media only screen and (max-width: 500px){
+// @media only screen and (max-width: 500px){ commenting for diasble web and mobile format (this means always nav will mobile format even in pc)
   nav{
     ul{
       flex-flow: column;
       background: #111111e8;
-      color: white;
       height: 100vh;
       width: 77vw;
       position: fixed;
@@ -51,22 +53,26 @@ nav{
       right: 0px;
       padding: 0px;
       li{
-        margin-left: 0px;
-        margin-right:0px;
-        padding: 25px 30px;
-        &:hover{
-          background-color: #ffffff3b;
-        }
-        &.nav-close{
-          display: flex;
-          justify-content: end;
-          background-color: transparent;
-          padding: 0px;
-          svg{
-            margin: 30px;
-            // &:hover{
-            //   background: #ffffff3b;
-            // }
+        a{
+          margin-left: 0px;
+          margin-right:0px;
+          padding: 25px 30px;
+          color: white;
+          &:hover{
+            background-color: #ffffff3b;
+            color: white;
+          }
+          &.nav-close{
+            display: flex;
+            justify-content: flex-end;
+            background-color: transparent;
+            padding: 0px;
+            svg{
+              margin: 30px;
+              // &:hover{
+              //   background: #ffffff3b;
+              // }
+            }
           }
         }
       }
@@ -75,9 +81,20 @@ nav{
       display: block;
     }
   }
+// }
+
+@media only screen and (min-width: 600px){
+  nav{
+    ul{
+      width: 350px;
+    }
+  }
 }
-@media only screen and (min-width: 500px){
-  .display-sm-flex{
-    display: flex !important;
+
+@media only screen and (max-width: 500px) {
+  nav {
+    .nav-menu {
+      margin: 20px 20px;
+    }
   }
 }
