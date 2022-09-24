@@ -1,18 +1,18 @@
-import Home from './components/home';
-import Nav from './components/navbar/Nav';
+import Nav from './components/pages/navbar/Nav';
 // import TestFirebse from './components/test/testFirebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GetInput from './components/test/getInput';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import pageRoutes from './components/routes/route'
 
 function App() {
   return (
     <>
       <Router>
-      <Nav/>
+        <Nav />
         <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/movies' element={<GetInput/>} />
+          {pageRoutes && pageRoutes.length > 0 && pageRoutes.map((route, i) => {
+            return <Route key={i} path={route.path} element={<route.component />} />
+          })}
         </Routes>
       </Router>
     </>

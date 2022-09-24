@@ -1,11 +1,11 @@
 import { useState, useEffect} from 'react';
-import '../../App.css';
-import '../../scss/home.scss';
-import myImage from '../../assets/images/me.jpg'
-import gunFireMp3 from '../../assets/audio/bullet.mp3'
-import johnyMp3 from '../../assets/audio/johny.mp3'
-import thunderMp3 from '../../assets/audio/thunder.mp3'
-import '../../scss/genaral.scss'
+import '../../../App.css';
+import '../../../scss/home.scss';
+import myImage from '../../../assets/images/me.jpg'
+import gunFireMp3 from '../../../assets/audio/bullet.mp3'
+import johnyMp3 from '../../../assets/audio/johny.mp3'
+import thunderMp3 from '../../../assets/audio/thunder.mp3'
+import '../../../scss/genaral.scss'
 
 
 function Home() {
