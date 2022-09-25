@@ -76,7 +76,7 @@ const GetInput = () => {
                     </div>
                 </div>
                 <div>
-                    <div>Movie name</div>
+                    <div>Rating</div>
                     <div>
                         <input type={"number"} name="rating" onChange={(e) => handelChange(e)} />
                     </div>
