@@ -14,7 +14,7 @@ const GetInput = () => {
     }, [])
 
     useEffect(() => {
-        console.log("movieList",movieList);
+        console.log("movieList", movieList);
     }, [movieList])
 
     const saveReview = () => {
@@ -31,9 +31,16 @@ const GetInput = () => {
         })
     }
 
+
+    let controller;
+
     const getReview = () => {
-        axios.get("http://localhost:3001/get_movie").then((res) => {
-            // console.log(res);
+        if (controller) controller.abort()
+        controller = new AbortController()
+
+        axios.get("http://localhost:3001/get_movie", {
+            signal: controller.signal
+        }).then((res) => {
             setMovieList(res.data)
         }).catch((err) => {
             console.log(err);
@@ -51,7 +58,7 @@ const GetInput = () => {
     const updateReview = (id, review) => {
         axios.put("http://localhost:3001/update_movie", {
             id,
-            review:review?review:""
+            review: review ? review : ""
         }).then((res) => {
             // console.log("saved", res);
             getReview()
@@ -63,6 +70,11 @@ const GetInput = () => {
     return (
         <Fragment>
             <div className="pt-5 d-flex align-items-center justify-content-center flex-column h-100">
+                <>
+                    <button onClick={() => {
+                        getReview()
+                    }}>Get movies</button>
+                </>
                 <div>
                     <div>Movie name</div>
                     <div>
@@ -94,18 +106,18 @@ const GetInput = () => {
                                     delete
                                 </button>---&gt; <input type={"text"} placeholder="Update Review" onChange={(e) => {
                                     setMovieList(prevMovieList => prevMovieList.map((x) => {
-                                        if (x.id===movie?.id) {
+                                        if (x.id === movie?.id) {
                                             return {
                                                 ...x,
                                                 updateReview: e.target.value
                                             }
-                                        }else{
+                                        } else {
                                             return x
                                         }
                                     }))
                                 }} />---&gt;
                                 <button onClick={() => {
-                                    updateReview(movie?.id,movie?.updateReview)
+                                    updateReview(movie?.id, movie?.updateReview)
                                 }}
                                     className="ms-2"
                                 >
