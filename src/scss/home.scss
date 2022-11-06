@@ -97,6 +97,10 @@
   opacity: 0;
   transition: 3s ease-in-out;
   transition-delay: 3s;
+
+  &.hide-waviy {
+    transition: 0.4s;
+  }
 }
 
 .waviy span {
@@ -107,6 +111,18 @@
   text-transform: uppercase;
   animation: flip 4s infinite;
   animation-delay: calc(.3s * var(--i))
+}
+
+.stop-play {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
+  color: #ffffff78;
+  font-weight: normal;
+  font-size: 13px;
+  text-decoration: underline;
 }
 
 @keyframes flip {
@@ -177,7 +193,8 @@
   width: 1px;
   height: 100%;
   margin-left: 7px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+  // background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff69);
   animation: stem 0.5s linear infinite;
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import '../../../App.css';
 import '../../../scss/home.scss';
 import myImage from '../../../assets/images/me.jpg'
@@ -22,7 +22,7 @@ function Home() {
   useEffect(() => {
     gunFire ? audio.play() : audio.pause()
   },
-    [gunFire,audio]
+    [gunFire, audio]
   )
   useEffect(() => {
     audio.addEventListener('ended', () => setgunFire(false));
@@ -31,15 +31,22 @@ function Home() {
     };
   }, [audio]);
   useEffect(() => {
-    playjohny ? thunderBGM.play() : thunderBGM.pause()
+    if (playjohny) {
+      thunderBGM.play()
+    } else {
+      johnyBGM.pause()
+      johnyBGM.currentTime = 0
+      thunderBGM.pause()
+      thunderBGM.currentTime = 0
+    }
     setTimeout(() => {
       playjohny ? johnyBGM.play() : johnyBGM.pause()
     }, 3000);
   },
-    [playjohny,thunderBGM,johnyBGM]
+    [playjohny, thunderBGM, johnyBGM]
   )
   const fetchOnScroll = (e) => {
-    if (e.target.scrollTop > 100) {
+    if (e.target.scrollTop > 400) {
       sethideRain(true)
     } else {
       sethideRain(false)
@@ -47,21 +54,11 @@ function Home() {
   }
   const makeThunder = () => {
     setTimeout(() => {
-      makeItRain();
-      makeItRain();
-      makeItRain();
-      makeItRain();
-      makeItRain();
-      setTimeout(() => {
-        makeItRain();
-        makeItRain();
-        makeItRain();
-      }, 1000);
       setThunder(true)
     }, 5000);
   }
   const makeItRain = () => {
-    if (frontRow?.length < 200) {
+    for (var i = 1; i <= 2; i++) {
       var increment = 0;
       while (increment < 100) {
         let randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
@@ -80,7 +77,13 @@ function Home() {
           <div className="splat" style={{ animationDelay: `0.${randoHundo}s`, animationDuration: `0.5${randoHundo}s` }}></div>
         </div>])
       }
-    }
+    };
+  }
+  const stopAll = () => {
+    setPlayJohny(false)
+    setfrontRow([])
+    setbackRow([])
+    setThunder(false)
   }
   return (
     <div className='home-container'
@@ -89,34 +92,40 @@ function Home() {
       {/* <Nav/> */}
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
         <img src={myImage} className={`profile-pic ${frontRow?.length > 0 ? "filter-profile" : ""}  ${thunder ? "thunder" : ""}`} alt="" />
-        <div className={`waviy ${frontRow?.length > 0 ? "opacity-100 visible" : ""}`}>
-          <span style={{ "--i": "1" }}>H</span>
-          <span style={{ "--i": "2" }}>A</span>
-          <span style={{ "--i": "3" }}>R</span>
-          <span style={{ "--i": "4" }}>I</span>
-          <span style={{ "--i": "5" }}>&nbsp;</span>
-          <span style={{ "--i": "6" }}>P</span>
-          <span style={{ "--i": "7" }}>R</span>
-          <span style={{ "--i": "8" }}>A</span>
-          <span style={{ "--i": "9" }}>S</span>
-          <span style={{ "--i": "10" }}>A</span>
-          <span style={{ "--i": "11" }}>T</span>
-          <span style={{ "--i": "12" }}>H</span>
+        <div className={`waviy ${frontRow?.length > 0 ? "opacity-100 visible" : "hide-waviy"}`}>
+          <div>
+            <span style={{ "--i": "1" }}>H</span>
+            <span style={{ "--i": "2" }}>A</span>
+            <span style={{ "--i": "3" }}>R</span>
+            <span style={{ "--i": "4" }}>I</span>
+            <span style={{ "--i": "5" }}>&nbsp;</span>
+            <span style={{ "--i": "6" }}>P</span>
+            <span style={{ "--i": "7" }}>R</span>
+            <span style={{ "--i": "8" }}>A</span>
+            <span style={{ "--i": "9" }}>S</span>
+            <span style={{ "--i": "10" }}>A</span>
+            <span style={{ "--i": "11" }}>T</span>
+            <span style={{ "--i": "12" }}>H</span>
+          </div>
+          <p onClick={() => {
+            stopAll()
+          }} className="stop-play">Stop music && rain</p>
         </div>
-        <div className={`rain front-row ${hideRain ? "hide-spalt" : ""}`}>
-          {frontRow.map((drop) => {
-            return drop
+        {!hideRain && <div className={`rain front-row ${hideRain ? "hide-spalt" : ""}`}>
+          {frontRow.map((drop, i) => {
+            return <div key={"frnt" + i}>{drop}</div>
           })}
-        </div>
-        <div className={`rain back-row ${hideRain ? "hide-spalt" : ""}`}>
-          {backRow.map((drop) => {
-            return drop
+        </div>}
+        {!hideRain && <div className={`rain back-row ${hideRain ? "hide-spalt" : ""}`}>
+          {backRow.map((drop, i) => {
+            return <div key={"back" + i}>{drop}</div>
           })}
-        </div>
-        <div className={`play-rain ${frontRow?.length > 0 ? "opacity-0 invisible " : ""}`} onClick={(e) => { 
-          makeItRain(); 
-          makeThunder(); 
-          setPlayJohny(true) }}>
+        </div>}
+        <div className={`play-rain ${frontRow?.length > 0 ? "opacity-0 invisible " : ""}`} onClick={(e) => {
+          makeItRain();
+          makeThunder();
+          setPlayJohny(true)
+        }}>
           Play
         </div>
       </div>
