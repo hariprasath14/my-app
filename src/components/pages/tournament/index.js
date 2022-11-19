@@ -2,9 +2,9 @@ import axios from 'axios';
 import { Fragment, useEffect, useState } from "react";
 
 const Tournament = () => {
-    const movie = { name: "", review: "", rating: 0 }
-    const [value, setValue] = useState(movie);
-    const [movieList, setMovieList] = useState([]);
+    const player = { name: "", review: "", rating: 0 }
+    const [value, setValue] = useState(player);
+    const [playersList, setPlayersList] = useState([]);
     
     const handelChange = (e) => {
         setValue({ ...value, [e.target.name]: e.target.value, })
@@ -15,8 +15,8 @@ const Tournament = () => {
     }, [])
 
     useEffect(() => {
-        console.log("movieList", movieList);
-    }, [movieList])
+        console.log("playersList", playersList);
+    }, [playersList])
 
     const saveReview = () => {
         console.log("value", value);
@@ -39,10 +39,10 @@ const Tournament = () => {
         if (controller) controller.abort()
         controller = new AbortController()
 
-        axios.get("http://localhost:3001/get_movie", {
+        axios.get("http://localhost:3001/get_mm__players", {
             signal: controller.signal
         }).then((res) => {
-            setMovieList(res.data)
+            setPlayersList(res.data)
         }).catch((err) => {
             console.log(err);
         })
@@ -64,13 +64,13 @@ const Tournament = () => {
                     </div>
                 </div>
                 <div>
-                    <div>Review</div>
+                    <div>Address</div>
                     <div>
                         <textarea name="review" onChange={(e) => handelChange(e)}></textarea>
                     </div>
                 </div>
                 <div>
-                    <div>Rating</div>
+                    <div>Phone num</div>
                     <div>
                         <input type={"number"} name="rating" onChange={(e) => handelChange(e)} />
                     </div>
