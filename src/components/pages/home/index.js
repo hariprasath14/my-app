@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import '../../../App.css';
 import '../../../scss/home.scss';
 import myImage from '../../../assets/images/me.jpg'
@@ -19,6 +19,7 @@ function Home() {
   const [frontRow, setfrontRow] = useState([]);
   const [backRow, setbackRow] = useState([]);
   const [thunder, setThunder] = useState(false);
+  const timeOutID = useRef(null)
   useEffect(() => {
     gunFire ? audio.play() : audio.pause()
   },
@@ -33,18 +34,19 @@ function Home() {
   useEffect(() => {
     if (playjohny) {
       thunderBGM.play()
-    } else {
-      johnyBGM.pause()
-      johnyBGM.currentTime = 0
-      thunderBGM.pause()
-      thunderBGM.currentTime = 0
-    }
-    setTimeout(() => {
+    } 
+    timeOutID.current=setTimeout(() => {
       playjohny ? johnyBGM.play() : johnyBGM.pause()
     }, 3000);
   },
     [playjohny, thunderBGM, johnyBGM]
   )
+  useEffect(()=>{
+    return () => {     
+      stopAll()
+      console.log("in cleanup")
+  }
+  },[])
   const fetchOnScroll = (e) => {
     if (e.target.scrollTop > 400) {
       sethideRain(true)
@@ -80,6 +82,11 @@ function Home() {
     };
   }
   const stopAll = () => {
+    clearTimeout(timeOutID.current)   
+    johnyBGM.pause()
+    johnyBGM.currentTime = 0
+    thunderBGM.pause()
+    thunderBGM.currentTime = 0
     setPlayJohny(false)
     setfrontRow([])
     setbackRow([])
