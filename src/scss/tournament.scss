@@ -1,11 +1,21 @@
 .tournament-container{
     padding: 100px 0px;
+    .game-logo{
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+    }
 }
 
 
 .tournament-form {
     max-width: 900px;
     margin: 0 auto;
+    .tmnt-form-submit{
+        button{
+            padding: 6px 100px;
+        }
+    }
     input {
         box-shadow: none !important;
     }

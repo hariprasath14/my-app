@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from "react";
-import TournamentForm from './form';
+import TournamentForm from './registorForm';
 import "../../../scss/tournament.scss";
+import logo from "../../../assets/images/tournament/mini-miltia.png"
 
 const Tournament = () => {
     const player = { name: "", review: "", rating: 0 }
     const [value, setValue] = useState(player);
     const [playersList, setPlayersList] = useState([]);
-    
+    const gameName = "Mini Militia"
+
     const handelChange = (e) => {
         setValue({ ...value, [e.target.name]: e.target.value, })
     }
@@ -54,7 +56,8 @@ const Tournament = () => {
     return (
         <Fragment>
             <div className="tournament-container tmnt-minimiltia h-100">
-                <TournamentForm/>
+                
+                <TournamentForm gameName={gameName} logo={logo} />
                 {/* <>
                     <button onClick={() => {
                         getReview()

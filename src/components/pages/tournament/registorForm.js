@@ -13,7 +13,6 @@ import { checkIfFilesAreCorrectType, checkIfFilesAreTooBig } from "../../common/
 const TournamentForm = (props) => {
 
     const [loader, setLoader] = useState(false);
-
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
         enableReinitialize: true,
@@ -73,8 +72,11 @@ const TournamentForm = (props) => {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12 mb-3">
-                            <h4>
-                                Register form
+                            <div className="make-center">
+                                <img src={props.logo} className={"game-logo mb-3"} />
+                            </div>
+                            <h4 className="make-center-mobile mb-0 mb-md-2">
+                                Register {props.gameName}
                             </h4>
                         </div>
                         <div className="col-md-6 mb-3">
@@ -279,9 +281,9 @@ const TournamentForm = (props) => {
                     </div>
                 </div>
 
-                <div className="my-5">
+                <div className="my-5 tmnt-form-submit make-center">
                     <button
-                        className="btn btn-primary w-100 waves-effect waves-light d-flex align-items-center justify-content-center opacity-100"
+                        className="btn btn-primary waves-effect waves-light make-center opacity-100"
                         type="submit"
                         disabled={loader}
                     >

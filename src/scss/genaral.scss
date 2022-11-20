@@ -23,3 +23,15 @@
 .opacity-0{
   opacity: 0 !important;
 }
+.make-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 576px) {
+  .make-center-mobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
