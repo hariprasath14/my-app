@@ -19,7 +19,7 @@ const GetInput = () => {
 
     const saveReview = () => {
         console.log("value", value);
-        axios.post("http://localhost:3001/save_movie", {
+        axios.post(`${process.env.REACT_APP_ADMIN_API_BASEUR}/save_movie`, {
             movie_name: value.name,
             movie_review: value.review,
             movie_rating: value.rating,
@@ -38,7 +38,7 @@ const GetInput = () => {
         if (controller) controller.abort()
         controller = new AbortController()
 
-        axios.get("http://localhost:3001/get_movie", {
+        axios.get(`${process.env.REACT_APP_ADMIN_API_BASEUR}/get_movie`, {
             signal: controller.signal
         }).then((res) => {
             setMovieList(res.data)
@@ -48,7 +48,7 @@ const GetInput = () => {
     }
 
     const deleteReview = (id) => {
-        axios.delete(`http://localhost:3001/delete_movie/${id}`).then((res) => {
+        axios.delete(`${process.env.REACT_APP_ADMIN_API_BASEUR}/delete_movie/${id}`).then((res) => {
             // console.log(res);
             getReview()
         }).catch((err) => {
@@ -56,7 +56,7 @@ const GetInput = () => {
         })
     }
     const updateReview = (id, review) => {
-        axios.put("http://localhost:3001/update_movie", {
+        axios.put(`${process.env.REACT_APP_ADMIN_API_BASEUR}/update_movie`, {
             id,
             review: review ? review : ""
         }).then((res) => {

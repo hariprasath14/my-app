@@ -20,7 +20,7 @@ const Tournament = () => {
 
     const saveReview = () => {
         console.log("value", value);
-        axios.post("http://localhost:3001/save_movie", {
+        axios.post(`${process.env.REACT_APP_ADMIN_API_BASEUR}/save_movie`, {
             movie_name: value.name,
             movie_review: value.review,
             movie_rating: value.rating,
@@ -39,7 +39,7 @@ const Tournament = () => {
         if (controller) controller.abort()
         controller = new AbortController()
 
-        axios.get("http://localhost:3001/get_mm__players", {
+        axios.get(`${process.env.REACT_APP_ADMIN_API_BASEUR}/get_mm__players`, {
             signal: controller.signal
         }).then((res) => {
             setPlayersList(res.data)
@@ -75,7 +75,7 @@ const Tournament = () => {
                         <input type={"number"} name="rating" onChange={(e) => handelChange(e)} />
                     </div>
                 </div>
-                <button onClick={() => { saveReview() }}>Submit</button>
+                {/* <button onClick={() => { saveReview() }}>Submit</button> */}
                 <div>
                 </div>
             </div>
