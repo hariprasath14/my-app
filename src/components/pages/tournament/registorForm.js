@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 
+import ClipLoader from "react-spinners/ClipLoader";
 //Validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -286,7 +287,15 @@ const TournamentForm = (props) => {
                         type="submit"
                         disabled={props.loader}
                     >
-                        {props.loader ? <Spinner color="light" size={"sm"} className="ms-2" />:"Register"}
+
+                        {props.loader ?
+                            <ClipLoader
+                                size={24}
+                                color={"#fff"}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                            : "Register"}
                     </button>
                 </div>
 
