@@ -12,7 +12,6 @@ import { checkIfFilesAreCorrectType, checkIfFilesAreTooBig } from "../../common/
 
 const TournamentForm = (props) => {
 
-    const [loader, setLoader] = useState(false);
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
         enableReinitialize: true,
@@ -52,7 +51,7 @@ const TournamentForm = (props) => {
             email: Yup.string().matches(config.appRegex.email, config.validationText.emailRegexText),
         }),
         onSubmit: (values) => {
-            console.log(values);
+            props.register(values)
         }
     });
 
@@ -285,10 +284,9 @@ const TournamentForm = (props) => {
                     <button
                         className="btn btn-primary waves-effect waves-light make-center opacity-100"
                         type="submit"
-                        disabled={loader}
+                        disabled={props.loader}
                     >
-                        Register
-                        {loader && <Spinner color="light" size={"sm"} className="ms-2" />}
+                        {props.loader ? <Spinner color="light" size={"sm"} className="ms-2" />:"Register"}
                     </button>
                 </div>
 

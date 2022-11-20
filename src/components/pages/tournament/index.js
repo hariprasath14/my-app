@@ -9,6 +9,7 @@ const Tournament = () => {
     const [value, setValue] = useState(player);
     const [playersList, setPlayersList] = useState([]);
     const gameName = "Mini Militia"
+    const [loader, setLoader] = useState(false);
 
     const handelChange = (e) => {
         setValue({ ...value, [e.target.name]: e.target.value, })
@@ -22,17 +23,27 @@ const Tournament = () => {
         console.log("playersList", playersList);
     }, [playersList])
 
-    const saveReview = () => {
-        console.log("value", value);
-        axios.post(`${process.env.REACT_APP_ADMIN_API_BASEUR}/save_movie`, {
-            movie_name: value.name,
-            movie_review: value.review,
-            movie_rating: value.rating,
+    const rgtrMiniMiltia = (values) => {
+        console.log("value", values);
+        setLoader(true)
+        axios.post(`${process.env.REACT_APP_ADMIN_API_BASEUR}/rgtrMM`, {
+            address: values.addressLine,
+            city: values.city,
+            country: values.country,
+            district: values.district,
+            // dp: values.dp,
+            email: values.email,
+            name: values.name,
+            phn_num: values.phone,
+            pincode: values.pincode,
+            state: values.state,
         }).then((res) => {
             // console.log("saved", res);
-            getReview()
+            // getReview()
+            setLoader(false)
         }).catch((err) => {
-            console.log(err);
+            setLoader(false)
+            alert("Server Error!, Try again later")
         })
     }
 
@@ -56,8 +67,8 @@ const Tournament = () => {
     return (
         <Fragment>
             <div className="tournament-container tmnt-minimiltia h-100">
-                
-                <TournamentForm gameName={gameName} logo={logo} />
+
+                <TournamentForm gameName={gameName} logo={logo} register={rgtrMiniMiltia} loader={loader} />
                 {/* <>
                     <button onClick={() => {
                         getReview()
