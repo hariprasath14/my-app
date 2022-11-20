@@ -1,0 +1,31 @@
+.tournament-form {
+    max-width: 900px;
+    margin: 0 auto;
+    input {
+        box-shadow: none !important;
+    }
+
+    .form-control.is-valid {
+        background-image: none;
+    }
+
+    .form-control.is-invalid {
+        background-image: none;
+    }
+
+    .form-control-sm.is-valid {
+        background-image: none;
+    }
+
+    .form-control-sm.is-invalid {
+        background-image: none;
+    }
+
+    .form-control-lg.is-valid {
+        background-image: none;
+    }
+
+    .form-control-lg.is-invalid {
+        background-image: none;
+    }
+}

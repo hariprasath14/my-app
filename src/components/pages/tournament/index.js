@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from "react";
+import TournamentForm from './form';
+import "../../../scss/tournament.scss";
 
 const Tournament = () => {
     const player = { name: "", review: "", rating: 0 }
@@ -11,7 +13,7 @@ const Tournament = () => {
     }
 
     useEffect(() => {
-        getReview()
+        // getReview()
     }, [])
 
     useEffect(() => {
@@ -51,7 +53,8 @@ const Tournament = () => {
 
     return (
         <Fragment>
-            <div className="pt-5 d-flex align-items-center justify-content-center flex-column h-100">
+            <div className="tournament-container tmnt-minimiltia h-100">
+                <TournamentForm/>
                 <>
                     <button onClick={() => {
                         getReview()
