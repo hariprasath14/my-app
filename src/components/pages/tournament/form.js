@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import config from "../../../config";
 
 import { Row, Col, CardBody, Card, Alert, Container, Form, Input, FormFeedback, Label, Spinner } from "reactstrap";
+import { checkIfFilesAreCorrectType, checkIfFilesAreTooBig } from "../../common/fileValidation";
 
 
 
@@ -27,9 +28,21 @@ const TournamentForm = (props) => {
             country: "",
             pincode: "",
             email: '',
+            dp: '',
         },
         validationSchema: Yup.object({
             name: Yup.string().required(config.validationText.name).max(config.appRegex.maxLength40, config.validationText.maxLength40Text).trim(),
+            dp: Yup.mixed()
+                .test({
+                    test: file => checkIfFilesAreTooBig(file, 1),
+                    message: `File cannot be more than 1 MB.`
+                })
+                .test(
+                    {
+                        test: file => checkIfFilesAreCorrectType(file, 1),
+                        message: `Only jpg, jpeg, and png files are allowed.`
+                    }
+                ),
             phone: Yup.string().required(config.validationText.contactNumber).matches(config.appRegex.contactNumber, config.validationText.contactRegex).trim(),
             addressLine: Yup.string().required(config.validationText.address).max(config.appRegex.maxLength100, config.validationText.maxLength100Text).trim(),
             city: Yup.string().required(config.validationText.city).max(config.appRegex.maxLength40, config.validationText.maxLength40Text).trim(),
@@ -59,6 +72,11 @@ const TournamentForm = (props) => {
             >
                 <div className="container-fluid">
                     <div className="row">
+                        <div className="col-12 mb-3">
+                            <h4>
+                                Register form
+                            </h4>
+                        </div>
                         <div className="col-md-6 mb-3">
 
                             <Label className="form-label">Name</Label>
@@ -114,6 +132,35 @@ const TournamentForm = (props) => {
                                     type="invalid">{validation.errors.email}</FormFeedback>
                             ) : null}
                         </div>
+                        <div className="col-md-6 mb-3">
+                            <Label className="form-label">Profile Image</Label>
+                            <Input
+                                name="dp"
+                                className="form-control cursor-not-allowed"
+                                disabled
+                                type="file"
+                                accept="image/png, image/jpg, image/jpeg"
+                                onChange={(e) => {
+                                    const files = e.target.files;
+                                    let file = {
+                                        target: {
+                                            name: "dp",
+                                            value: files[0]
+                                        }
+                                    }
+                                    console.log(file);
+                                    validation.handleChange(file)
+                                }}
+                                value={validation.values.dp || ""}
+                                invalid={
+                                    validation.touched.dp && validation.errors.dp ? true : false
+                                }
+                            />
+                            {validation.touched.dp && validation.errors.dp ? (
+                                <FormFeedback
+                                    type="invalid">{validation.errors.dp}</FormFeedback>
+                            ) : null}
+                        </div>
 
                         <div className="col-md-6 mb-3">
 
@@ -136,7 +183,7 @@ const TournamentForm = (props) => {
 
                         <div className="col-md-6 mb-3">
 
-                            <Label className="form-label">city</Label>
+                            <Label className="form-label">City</Label>
                             <Input
                                 name="city"
                                 className="form-control"
@@ -238,7 +285,7 @@ const TournamentForm = (props) => {
                         type="submit"
                         disabled={loader}
                     >
-                        Submit
+                        Register
                         {loader && <Spinner color="light" size={"sm"} className="ms-2" />}
                     </button>
                 </div>

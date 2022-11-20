@@ -55,29 +55,11 @@ const Tournament = () => {
         <Fragment>
             <div className="tournament-container tmnt-minimiltia h-100">
                 <TournamentForm/>
-                <>
+                {/* <>
                     <button onClick={() => {
                         getReview()
                     }}>Register</button>
-                </>
-                <div>
-                    <div>Name</div>
-                    <div>
-                        <input type={"text"} name="name" onChange={(e) => handelChange(e)} />
-                    </div>
-                </div>
-                <div>
-                    <div>Address</div>
-                    <div>
-                        <textarea name="review" onChange={(e) => handelChange(e)}></textarea>
-                    </div>
-                </div>
-                <div>
-                    <div>Phone num</div>
-                    <div>
-                        <input type={"number"} name="rating" onChange={(e) => handelChange(e)} />
-                    </div>
-                </div>
+                </> */}
                 {/* <button onClick={() => { saveReview() }}>Submit</button> */}
                 <div>
                 </div>
