@@ -5,7 +5,7 @@ import Tournament from "../pages/tournament";
 
 const pageRoutes = [
     {path:"/",component:<Home/>},
-    {path:"/movies",component:<Movies/>},
+    // {path:"/movies",component:<Movies/>},
     {path:"/tournament",component:<Tournament/>},
     {path:"*",component:<Error/>},
 ]

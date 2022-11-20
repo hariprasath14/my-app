@@ -5,7 +5,10 @@ const menuIcon = <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/sv
 function Nav() {
   const [openMenu, setOpenMenu] = useState(false)
   const menuList = [
-    { name: "Home", url: "/" }, { name: "Movies", url: "/movies" }, { name: "Tournament", url: "/tournament" }, { name: "Login", url: "/login" }]
+    { name: "Home", url: "/" },
+     { name: "Movies", url: "/movies" }, 
+     { name: "Tournament", url: "/tournament" }, 
+     { name: "Login", url: "/login" }]
   return (
     <>
       <nav>
