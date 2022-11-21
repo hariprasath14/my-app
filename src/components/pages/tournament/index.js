@@ -1,85 +1,14 @@
-import axios from 'axios';
-import { Fragment, useEffect, useState } from "react";
-import TournamentForm from './registorForm';
+import NavHead from "../navbar/navHeader";
 import "../../../scss/tournament.scss";
-import logo from "../../../assets/images/tournament/mini-miltia.png"
 
 const Tournament = () => {
-    const player = { name: "", review: "", rating: 0 }
-    const [value, setValue] = useState(player);
-    const [playersList, setPlayersList] = useState([]);
-    const gameName = "Mini Militia"
-    const [loader, setLoader] = useState(false);
-
-    const handelChange = (e) => {
-        setValue({ ...value, [e.target.name]: e.target.value, })
-    }
-
-    useEffect(() => {
-        // getReview()
-    }, [])
-
-    useEffect(() => {
-        console.log("playersList", playersList);
-    }, [playersList])
-
-    const rgtrMiniMiltia = (values) => {
-        console.log("value", values);
-        setLoader(true)
-        axios.post(`${process.env.REACT_APP_ADMIN_API_BASEUR}/rgtrMM`, {
-            address: values.addressLine,
-            city: values.city,
-            country: values.country,
-            district: values.district,
-            // dp: values.dp,
-            email: values.email,
-            name: values.name,
-            phn_num: values.phone,
-            pincode: values.pincode,
-            state: values.state,
-        }).then((res) => {
-            // console.log("saved", res);
-            // getReview()
-            setLoader(false)
-        }).catch((err) => {
-            setLoader(false)
-            alert("Server Error!, Try again later")
-        })
-    }
-
-
-    let controller;
-
-    const getReview = () => {
-        if (controller) controller.abort()
-        controller = new AbortController()
-
-        axios.get(`${process.env.REACT_APP_ADMIN_API_BASEUR}/get_mm__players`, {
-            signal: controller.signal
-        }).then((res) => {
-            setPlayersList(res.data)
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
-
-
     return (
-        <Fragment>
-            <div className="tournament-container tmnt-minimiltia h-100">
+        <div className="tournament-container">
+            <NavHead />
+            <div className="game-container">
 
-                <TournamentForm gameName={gameName} logo={logo} register={rgtrMiniMiltia} loader={loader} />
-                {/* <>
-                    <button onClick={() => {
-                        getReview()
-                    }}>Register</button>
-                </> */}
-                {/* <button onClick={() => { saveReview() }}>Submit</button> */}
-                <div>
-                </div>
             </div>
-        </Fragment>
-    );
+        </div>);
 }
 
 export default Tournament;

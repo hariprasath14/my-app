@@ -1,9 +1,10 @@
-nav{
+nav {
   background: white;
   position: sticky;
   top: 0px;
   z-index: 999;
-  ul{
+
+  ul {
     display: flex;
     margin: 0px;
     padding: 0px;
@@ -13,26 +14,31 @@ nav{
     left: 0px;
     z-index: 1;
     padding: 20px 0px;
-    li{
+
+    li {
       list-style: none;
-      a{    
-      display: block;
-      margin-left: 20px;
-      margin-right: 80px;
-      color: #acacac;
-      text-decoration: none;
-      cursor: pointer;
-      // display: inline-block;
-      &.nav-close{
-        display: none;
-        button{
-          cursor: pointer;
+
+      a {
+        display: block;
+        margin-left: 20px;
+        margin-right: 80px;
+        color: #acacac;
+        text-decoration: none;
+        cursor: pointer;
+
+        // display: inline-block;
+        &.nav-close {
+          display: none;
+
+          button {
+            cursor: pointer;
+          }
         }
-      }
       }
     }
   }
-  .nav-menu{
+
+  .nav-menu {
     position: absolute;
     right: 0px;
     top: 0px;
@@ -42,50 +48,56 @@ nav{
 }
 
 // @media only screen and (max-width: 500px){ commenting for diasble web and mobile format (this means always nav will mobile format even in pc)
-  nav{
-    ul{
-      flex-flow: column;
-      background: #111111e8;
-      height: 100vh;
-      width: 77vw;
-      position: fixed;
-      left: unset;
-      right: 0px;
-      padding: 0px;
-      li{
-        a{
-          margin-left: 0px;
-          margin-right:0px;
-          padding: 25px 30px;
+nav {
+  ul {
+    flex-flow: column;
+    background: #111111e8;
+    height: 100vh;
+    width: 77vw;
+    position: fixed;
+    left: unset;
+    right: 0px;
+    padding: 0px;
+
+    li {
+      a {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 25px 30px;
+        color: white;
+
+        &:hover {
+          background-color: #ffffff3b;
           color: white;
-          &:hover{
-            background-color: #ffffff3b;
-            color: white;
-          }
-          &.nav-close{
-            display: flex;
-            justify-content: flex-end;
-            background-color: transparent;
-            padding: 0px;
-            svg{
-              margin: 30px;
-              // &:hover{
-              //   background: #ffffff3b;
-              // }
-            }
+        }
+
+        &.nav-close {
+          display: flex;
+          justify-content: flex-end;
+          background-color: transparent;
+          padding: 0px;
+
+          svg {
+            margin: 30px;
+            // &:hover{
+            //   background: #ffffff3b;
+            // }
           }
         }
       }
     }
-    .nav-menu{
-      display: block;
-    }
   }
+
+  .nav-menu {
+    display: block;
+  }
+}
+
 // }
 
-@media only screen and (min-width: 600px){
-  nav{
-    ul{
+@media only screen and (min-width: 600px) {
+  nav {
+    ul {
       width: 350px;
     }
   }
@@ -95,6 +107,29 @@ nav{
   nav {
     .nav-menu {
       margin: 20px 20px;
+    }
+  }
+}
+
+//navhead
+.nav-head {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .app-logo {
+    padding: 20px;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: #24315e !important;
+
+      img {
+        height: 44px;
+        border-radius: 7px;
+      }
     }
   }
 }
