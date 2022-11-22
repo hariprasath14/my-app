@@ -44,9 +44,9 @@ const Tournament = () => {
                                             </div>
 
                                             {dateExpired(game.matchDate) ? <div className="game-date available">
-                                                Match date: {game.matchDate}
+                                                Match date:&nbsp; {moment(game.matchDate).format("DD-MMM-YYYY")}
                                             </div> : <div className="game-date expired">
-                                                Date Expired
+                                                Expired: &nbsp;{moment(game.matchDate).format("DD-MMM-YYYY")}
                                             </div>}
                                         </div>
                                     </Link>
