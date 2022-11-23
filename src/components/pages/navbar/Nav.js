@@ -20,7 +20,7 @@ function Nav() {
           </li>
           {menuList && menuList?.length > 0 && menuList.map((menu, i) => {
             return <li key={i}>
-              <Link to={menu.url}>
+              <Link to={menu.url} onClick={() => { setOpenMenu(false) }}>
                 {menu.name}
               </Link>
             </li>
