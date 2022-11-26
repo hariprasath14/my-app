@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from "react";
-import TournamentForm from './registorForm';
+import TournamentForm from './registerForm';
 import logo from "../../../assets/images/tournament/mini-miltia.png"
 
-const TournamentGame = () => {
+const TournamentRegister = () => {
     const player = { name: "", review: "", rating: 0 }
     const [value, setValue] = useState(player);
     const [playersList, setPlayersList] = useState([]);
@@ -65,7 +65,7 @@ const TournamentGame = () => {
 
     return (
         <Fragment>
-            <div className="tmnt-game-container h-100">
+            <div className="tmnt-game-container my-3 h-100">
 
                 <TournamentForm gameName={gameName} logo={logo} register={rgtrMiniMiltia} loader={loader} />
                 {/* <>
@@ -74,11 +74,10 @@ const TournamentGame = () => {
                     }}>Register</button>
                 </> */}
                 {/* <button onClick={() => { saveReview() }}>Submit</button> */}
-                <div>
-                </div>
+              
             </div>
         </Fragment>
     );
 }
 
-export default TournamentGame;
+export default TournamentRegister;

@@ -281,7 +281,7 @@ const TournamentForm = (props) => {
                     </div>
                 </div>
 
-                <div className="my-5 tmnt-form-submit make-center">
+                <div className="mt-5 tmnt-form-submit make-center">
                     <button
                         className="btn btn-primary waves-effect waves-light make-center opacity-100"
                         type="submit"

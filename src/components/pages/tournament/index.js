@@ -3,14 +3,18 @@ import "../../../scss/tournament.scss";
 import { Link } from "react-router-dom";
 import MiniMiltia from "./minimiltia";
 import moment from "moment"
+import TournamentRegister from "./gameRegister";
+import { useState } from "react";
+import { Modal, ModalBody } from "reactstrap";
 
 const Tournament = () => {
+    const [openRegister, setOpenRegister] = useState(false);
     const gameList = [
         {
             name: "Mini Militia",
             path: "/tournament/minimiltia",
             className: "minimiltia",
-            matchDate: "2022-11-24"
+            matchDate: "2022-11-29"
         },
     ]
     const dateExpired = (date) => {
@@ -38,7 +42,12 @@ const Tournament = () => {
                                             </div>
                                             <div className="game-title">
                                                 <p>{game.name}</p>
-                                                <Link to={game.path} className="font-size-12">{dateExpired(game.matchDate) ? "Quick Register" : "View History"}</Link>
+                                                {!dateExpired(game.matchDate) ? <Link to={game.path} className="font-size-12">View History</Link>
+                                                    :
+                                                    <Link to={game.path} onClick={(e) => {
+                                                        e.preventDefault()
+                                                        setOpenRegister(!openRegister)
+                                                    }} className="font-size-12">Quick Register</Link>}
                                                 <div className="ribbon left"></div>
                                                 <div className="ribbon right"></div>
                                             </div>
@@ -55,6 +64,15 @@ const Tournament = () => {
                         </div>
                     </div>
                 </div>
+                <Modal
+                    isOpen={openRegister}
+                    toggle={() => { setOpenRegister(!openRegister) }}
+                    centered
+                >
+                    <ModalBody>
+                        <TournamentRegister />
+                    </ModalBody>
+                </Modal>
                 <div className="footer">
                 </div>
             </div>

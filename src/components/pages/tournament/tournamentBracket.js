@@ -3,7 +3,7 @@ const TournamentBracket = () => {
 
   return (<div>
 
-    <div class="container my-5">
+    <div class="container my-2">
       <h5 className="py-4">Tournament route to final</h5>
       
       <div class="tmnt-map-layout">

@@ -45,3 +45,29 @@
 // .page-content {
 //   padding: 0px 20px;
 // }
+
+$link-color: #2196f3;
+$link-active-color: #1c83d5;
+
+.register-link {
+  color: $link-color;
+  cursor: pointer;
+  padding: 5px;
+}
+
+a {
+  color: $link-color;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $link-color;
+  border-color: $link-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $link-active-color;
+    border-color: $link-active-color;
+  }
+}
