@@ -27,10 +27,47 @@ const MiniMiltia = () => {
     })
     if (data) {
       setPlayersList(data)
-      console.log(data);
     }
   }
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
 
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
+
+
+  const createSchedule = () => {
+    console.log(playersList);
+    // one team two match
+    // for (let i = 0; i < playersList.length; i++) {
+    //   let subject1 = playersList[i].name
+    //   for (let x = 0; x < playersList.length; x++) {
+    //     if (i !== x) {
+    //       match.push({ a: subject1, b: playersList[x].name })
+    //     }
+    //   }
+    // }
+    
+    // one team one match
+    let x = []
+    playersList.map((v, i) => {
+      return x = [...x, ...playersList.slice(i + 1).map(v2 => v.name + "--" + v2.name)]
+    });
+    let shuffledArray = shuffle([...x]);
+    console.log(shuffledArray, x);
+  }
   return (
     <div className="page-content">
       <NavHead />
@@ -46,7 +83,33 @@ const MiniMiltia = () => {
               <button className="btn btn-primary mb-0" onClick={() => { setOpenRegister(!openRegister) }}>Register Upcoming Match</button>
             </div>
           </div>
-          {JSON.stringify(playersList)}
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone number</th>
+              </tr>
+            </thead>
+            <tbody>
+              {playersList && playersList?.length > 0 && playersList.map((player, i) => {
+                return <tr key={i}>
+                  <td>
+                    {player.id}
+                  </td>
+                  <td>
+                    {player.name}
+                  </td>
+                  <td>
+                    {player.phn_num}
+                  </td>
+                </tr>
+              })}
+            </tbody>
+          </table>
+          <button onClick={() => {
+            createSchedule()
+          }}>Create Schedule</button>
           <Modal
             isOpen={openRegister}
             toggle={() => { setOpenRegister(!openRegister) }}
