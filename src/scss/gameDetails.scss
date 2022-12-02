@@ -1,9 +1,19 @@
-.game-details-container{
+.game-details-container {
     .head {
         text-align: center;
 
         p {
             color: #656c72;
+        }
+    }
+
+    table.tmnt-table {
+        margin: 30px auto;
+
+        th,
+        td {
+            padding: 20px;
+            border: 1px solid gray;
         }
     }
 }

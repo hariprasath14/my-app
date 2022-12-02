@@ -5,10 +5,12 @@ import TournamentRegister from "./gameRegister";
 import { Modal, ModalBody } from "reactstrap";
 import { useEffect, useState } from "react";
 import { getRegisterPlayers } from "../../common/api/helper";
+import moment from "moment"
 
 const MiniMiltia = () => {
   const [openRegister, setOpenRegister] = useState(false);
   const [playersList, setPlayersList] = useState([]);
+  const [matchSchedule, setMatchSchedule] = useState([]);
 
 
   useEffect(() => {
@@ -46,6 +48,50 @@ const MiniMiltia = () => {
 
     return array;
   }
+  function shuffleWithDate(array) {
+    let currentIndex = array.length, randomIndex;
+
+    let dateTime = moment().add(array.length + 1, 'days');
+    let x;
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      dateTime = moment(dateTime).subtract(1, 'days')
+      x = moment(dateTime).format('MMMM Do YYYY, h:mm:ss a')
+      console.log(x);      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        { ...array[randomIndex], date: x }, { ...array[currentIndex], date: x },];
+    }
+
+    return array;
+  }
+
+  function shuffleWithTime(array) {
+    let currentIndex = array.length, randomIndex;
+
+    let dateTime = moment().add(array.length + 1, 'hours');
+    let x;
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      dateTime = moment(dateTime).subtract(1, 'hours')
+      x = moment(dateTime).format('MMMM Do YYYY, h:mm:ss a')
+      console.log(x);      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        { ...array[randomIndex], date: x }, { ...array[currentIndex], date: x },];
+    }
+
+    return array;
+  }
+
 
 
   const createSchedule = () => {
@@ -59,13 +105,20 @@ const MiniMiltia = () => {
     //     }
     //   }
     // }
-    
+
     // one team one match
     let x = []
+
     playersList.map((v, i) => {
-      return x = [...x, ...playersList.slice(i + 1).map(v2 => v.name + "--" + v2.name)]
+      return x = [...x, ...playersList.slice(i + 1).map(v2 => {
+        return { m1: v, m2: v2 }
+      })]
     });
-    let shuffledArray = shuffle([...x]);
+    let shuffledArray = shuffleWithTime([...x]);
+
+
+
+    setMatchSchedule(shuffledArray)
     console.log(shuffledArray, x);
   }
   return (
@@ -83,7 +136,7 @@ const MiniMiltia = () => {
               <button className="btn btn-primary mb-0" onClick={() => { setOpenRegister(!openRegister) }}>Register Upcoming Match</button>
             </div>
           </div>
-          <table>
+          {playersList && playersList?.length > 0 && <table className="tmnt-table">
             <thead>
               <tr>
                 <th>Id</th>
@@ -92,7 +145,7 @@ const MiniMiltia = () => {
               </tr>
             </thead>
             <tbody>
-              {playersList && playersList?.length > 0 && playersList.map((player, i) => {
+              {playersList.map((player, i) => {
                 return <tr key={i}>
                   <td>
                     {player.id}
@@ -106,10 +159,35 @@ const MiniMiltia = () => {
                 </tr>
               })}
             </tbody>
-          </table>
+          </table>}
           <button onClick={() => {
             createSchedule()
-          }}>Create Schedule</button>
+          }} className="my-5">Create Schedule</button>
+
+          {matchSchedule && matchSchedule?.length > 0 && <table className="tmnt-table">
+            <thead>
+              <tr>
+                <th>Team a</th>
+                <th>Team b</th>
+                <th>Match date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {matchSchedule.map((match, i) => {
+                return <tr key={i}>
+                  <td>
+                    {match.m1.name}
+                  </td>
+                  <td>
+                    {match.m2.name}
+                  </td>
+                  <td>
+                    {match.date}
+                  </td>
+                </tr>
+              })}
+            </tbody>
+          </table>}
           <Modal
             isOpen={openRegister}
             toggle={() => { setOpenRegister(!openRegister) }}
