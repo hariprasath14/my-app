@@ -6,11 +6,13 @@ import { Modal, ModalBody } from "reactstrap";
 import { useEffect, useState } from "react";
 import { getRegisterPlayers } from "../../common/api/helper";
 import moment from "moment"
+import UpdateMatchWinner from "./updateMatchWinner";
 
 const MiniMiltia = () => {
   const [openRegister, setOpenRegister] = useState(false);
   const [playersList, setPlayersList] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState([]);
+  const [openEditPoint, setOpenEditPoint] = useState(null);
 
 
   useEffect(() => {
@@ -170,6 +172,7 @@ const MiniMiltia = () => {
                 <th>Team a</th>
                 <th>Team b</th>
                 <th>Match date</th>
+                <th>Won</th>
               </tr>
             </thead>
             <tbody>
@@ -183,6 +186,9 @@ const MiniMiltia = () => {
                   </td>
                   <td>
                     {match.date}
+                  </td>
+                  <td>
+                    <button onClick={() => { setOpenEditPoint(match) }}>Update</button>
                   </td>
                 </tr>
               })}
@@ -198,6 +204,9 @@ const MiniMiltia = () => {
             </ModalBody>
           </Modal>
           <TournamentBracket />
+
+          {openEditPoint !== null && <UpdateMatchWinner openEditPoint={openEditPoint} setOpenEditPoint={setOpenEditPoint} />}
+
         </div>
       </div>
     </div>

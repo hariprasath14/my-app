@@ -22,6 +22,7 @@ module.exports = {
         firstNameRegexText: "Please enter valid first name",
         nameRegexText: "Please enter valid name",
         lastName: "Please enter your last name",
+        winner: "Please select winner",
         lastNameRegexText: "Please enter valid last name",
         email: "Please enter your email",
         emailRegexText: "Please enter valid email",
