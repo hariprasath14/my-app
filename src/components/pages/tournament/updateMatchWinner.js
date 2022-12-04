@@ -6,6 +6,7 @@ import config from "../../../config";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Form, FormFeedback, Input, Label, Modal, ModalBody } from "reactstrap";
 import { useEffect, useState } from "react";
+import { tmntPostApi } from "../../common/api/helper";
 
 const UpdateMatchWinner = ({ openEditPoint, setOpenEditPoint }) => {
     const [updateWinLoader, setUpdateWinLoader] = useState(false);
@@ -26,10 +27,25 @@ const UpdateMatchWinner = ({ openEditPoint, setOpenEditPoint }) => {
             winner: Yup.string().required(),
         }),
         onSubmit: (values) => {
-            console.log(values);
+            updateWinner(values);
         }
     });
 
+
+    const updateWinner = async (values) => {
+        console.log("value", values);
+        setUpdateWinLoader(true)
+        let data = await tmntPostApi(`/updateWiner`, {
+            ...values
+        }).catch((err) => {
+            setUpdateWinLoader(false)
+            alert("Server Error!, Try again later")
+        })
+        if (data) {
+            setUpdateWinLoader(false)
+            console.log(data);
+        }
+    }
 
     return (
 

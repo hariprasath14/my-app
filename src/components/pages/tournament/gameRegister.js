@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Fragment, useEffect, useState } from "react";
 import TournamentForm from './registerForm';
 import logo from "../../../assets/images/tournament/mini-miltia.png"
-import { registerPlayers } from '../../common/api/helper';
+import { tmntPostApi } from '../../common/api/helper';
 
 const TournamentRegister = () => {
     const gameName = "Mini Militia"
@@ -12,7 +12,7 @@ const TournamentRegister = () => {
     const rgtrMiniMiltia = async (values) => {
         console.log("value", values);
         setLoader(true)
-        let data = await registerPlayers(`/rgtrMM`, {
+        let data = await tmntPostApi(`/rgtrMM`, {
             address: values.addressLine,
             city: values.city,
             country: values.country,

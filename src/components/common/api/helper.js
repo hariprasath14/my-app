@@ -7,12 +7,12 @@ const appBaseURl = axios.create({
 })
 
 
-export const getRegisterPlayers = async (url, data, config) => {
+export const tmntGetApi = async (url, data, config) => {
     return await appBaseURl.get(url, { ...data }, { ...config }).then((response) => {
         return response.data
     })
 }
-export const registerPlayers = async (url, data, config) => {
+export const tmntPostApi = async (url, data, config) => {
     return await appBaseURl.post(url, { ...data }, { ...config }).then((response) => {
         return response.data
     })

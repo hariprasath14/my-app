@@ -4,7 +4,7 @@ import TournamentBracket from "./tournamentBracket";
 import TournamentRegister from "./gameRegister";
 import { Modal, ModalBody } from "reactstrap";
 import { useEffect, useState } from "react";
-import { getRegisterPlayers } from "../../common/api/helper";
+import { tmntGetApi } from "../../common/api/helper";
 import moment from "moment"
 import UpdateMatchWinner from "./updateMatchWinner";
 
@@ -24,7 +24,7 @@ const MiniMiltia = () => {
   const getRegisterData = async () => {
     if (controller) controller.abort()
     controller = new AbortController()
-    let data = await getRegisterPlayers(`/get_mm__players`, {
+    let data = await tmntGetApi(`/get_mm__players`, {
       signal: controller.signal
     }).catch((err) => {
       console.log(err);
