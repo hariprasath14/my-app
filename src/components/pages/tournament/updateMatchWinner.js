@@ -78,12 +78,12 @@ const UpdateMatchWinner = ({ openEditPoint, setOpenEditPoint }) => {
                                     type="radio"
                                     className="me-2"
                                     onChange={validation.handleChange}
-                                    value={openEditPoint?.m1?.name}
+                                    value={openEditPoint?.teamA?.name}
                                     invalid={
                                         validation.touched.winner && validation.errors.winner ? true : false
                                     }
                                 />
-                                {openEditPoint?.m1?.name}
+                                {openEditPoint?.teamA?.name}
 
                             </Label>
 
@@ -94,12 +94,12 @@ const UpdateMatchWinner = ({ openEditPoint, setOpenEditPoint }) => {
                                     type="radio"
                                     className="me-2"
                                     onChange={validation.handleChange}
-                                    value={openEditPoint?.m2?.name}
+                                    value={openEditPoint?.teamB?.name}
                                     invalid={
                                         validation.touched.winner && validation.errors.winner ? true : false
                                     }
                                 />
-                                {openEditPoint.m2.name}
+                                {openEditPoint.teamB.name}
 
                             </Label>
 

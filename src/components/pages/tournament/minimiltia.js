@@ -4,7 +4,7 @@ import TournamentBracket from "./tournamentBracket";
 import TournamentRegister from "./gameRegister";
 import { Modal, ModalBody } from "reactstrap";
 import { useEffect, useState } from "react";
-import { tmntGetApi } from "../../common/api/helper";
+import { tmntGetApi, tmntPostApi } from "../../common/api/helper";
 import moment from "moment"
 import UpdateMatchWinner from "./updateMatchWinner";
 
@@ -63,7 +63,7 @@ const MiniMiltia = () => {
       currentIndex--;
 
       dateTime = moment(dateTime).subtract(1, 'days')
-      x = moment(dateTime).format('MMMM Do YYYY, h:mm:ss a')
+      x = moment(dateTime).format("YYYY-MM-DD hh:mm:ss")
       console.log(x);      // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         { ...array[randomIndex], date: x }, { ...array[currentIndex], date: x },];
@@ -85,7 +85,7 @@ const MiniMiltia = () => {
       currentIndex--;
 
       dateTime = moment(dateTime).subtract(1, 'hours')
-      x = moment(dateTime).format('MMMM Do YYYY, h:mm:ss a')
+      x = moment(dateTime).format("YYYY-MM-DD hh:mm:ss")
       console.log(x);      // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         { ...array[randomIndex], date: x }, { ...array[currentIndex], date: x },];
@@ -123,6 +123,20 @@ const MiniMiltia = () => {
     setMatchSchedule(shuffledArray)
     console.log(shuffledArray, x);
   }
+
+
+  const createPlayoffSchedule = async () => {
+    let data = await tmntPostApi(`/createPlayOff`, {
+      create: 1
+    }).catch((err) => {
+      console.log(err);
+    })
+    if (data) {
+      console.log(data);
+      setMatchSchedule(data.response)
+    }
+  }
+
   return (
     <div className="page-content">
       <NavHead />
@@ -163,7 +177,8 @@ const MiniMiltia = () => {
             </tbody>
           </table>}
           <button onClick={() => {
-            createSchedule()
+            // createSchedule();
+            createPlayoffSchedule()
           }} className="my-5">Create Schedule</button>
 
           {matchSchedule && matchSchedule?.length > 0 && <table className="tmnt-table">
@@ -179,13 +194,13 @@ const MiniMiltia = () => {
               {matchSchedule.map((match, i) => {
                 return <tr key={i}>
                   <td>
-                    {match.m1.name}
+                    {match.teamA.name}
                   </td>
                   <td>
-                    {match.m2.name}
+                    {match.teamB.name}
                   </td>
                   <td>
-                    {match.date}
+                    {match.matchDt}
                   </td>
                   <td>
                     <button onClick={() => { setOpenEditPoint(match) }}>Update</button>
