@@ -18,6 +18,7 @@ const MiniMiltia = () => {
   useEffect(() => {
     getRegisterData()
     getPlayoffSchedule()
+    getTournamentList()
   }, [])
 
   let controller;
@@ -39,19 +40,31 @@ const MiniMiltia = () => {
 
   const createPlayoffSchedule = async () => {
     let data = await tmntPostApi(`/createPlayOff`, {
-      create: 1
+      create: 1,
+      tmtName: "Test1"
     }).catch((err) => {
       console.log(err);
     })
     if (data) {
       console.log(data);
-      setMatchSchedule(data.response)
+      getPlayoffSchedule()
+    }
+  }
+
+  const getTournamentList = async () => {
+    let data = await tmntPostApi(`/getTmtList`, {
+      admin: 1
+    }).catch((err) => {
+      console.log(err);
+    })
+    if (data) {
+      console.log(data.response);
     }
   }
 
   const getPlayoffSchedule = async () => {
     let data = await tmntPostApi(`/getPlayOff`, {
-      create: 1
+      tmtID: 7
     }).catch((err) => {
       console.log(err);
     })
@@ -107,6 +120,7 @@ const MiniMiltia = () => {
           {matchSchedule && matchSchedule?.length > 0 && <table className="tmnt-table">
             <thead>
               <tr>
+                <th>tmtID</th>
                 <th>Team a</th>
                 <th>Team b</th>
                 <th>Match date</th>
@@ -117,10 +131,13 @@ const MiniMiltia = () => {
               {matchSchedule.map((match, i) => {
                 return <tr key={i}>
                   <td>
-                    {match.teamA.name}
+                    {match.tmtID}
                   </td>
                   <td>
-                    {match.teamB.name}
+                    {match.TeamA.name}
+                  </td>
+                  <td>
+                    {match.TeamB.name}
                   </td>
                   <td>
                     {match.matchDt}
