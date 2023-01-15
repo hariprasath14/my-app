@@ -7,12 +7,17 @@ const appBaseURl = axios.create({
 })
 
 
-export const tmntGetApi = async (url, data, config) => {
-    return await appBaseURl.get(url, { ...data }, { ...config }).then((response) => {
+export const tmntGetApi = async (url, config) => {
+    return await appBaseURl.get(url, { ...config }).then((response) => {
         return response.data
     })
 }
 export const tmntPostApi = async (url, data, config) => {
+    return await appBaseURl.post(url, { ...data }, { ...config }).then((response) => {
+        return response.data
+    })
+}
+export const appAuthApi = async (url, data, config) => {
     return await appBaseURl.post(url, { ...data }, { ...config }).then((response) => {
         return response.data
     })

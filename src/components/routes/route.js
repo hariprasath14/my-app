@@ -1,3 +1,5 @@
+import Login from "../pages/authentication/login";
+import Register from "../pages/authentication/register";
 import Error from "../pages/error";
 import Home from "../pages/home";
 import Movies from "../pages/test/getInput";
@@ -6,6 +8,8 @@ import MiniMiltia from "../pages/tournament/minimiltia";
 
 const pageRoutes = [
     { path: "/", component: <Home /> },
+    { path: "/login", component: <Login /> },
+    { path: "/register", component: <Register /> },
     // {path:"/movies",component:<Movies/>},
     { path: "/tournament", component: <Tournament /> },
     { path: "/tournament/minimiltia", component: <MiniMiltia /> },
