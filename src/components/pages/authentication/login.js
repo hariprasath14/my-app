@@ -35,7 +35,7 @@ const Login = (props) => {
 
 const loginUser= async (values)=>{
     setLoader(true)
-    let data = await appAuthApi("/loginUser",{
+    let data = await appAuthApi("/login",{
         ...values
     }).catch((err)=>{
         console.log(err);

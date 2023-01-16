@@ -18,6 +18,7 @@ module.exports = {
         password: "Please enter your password",
         passwordRegexText: "Your password should contain 8-20 characters with a combination of uppercase, lowercase, special character and number.",
         name: "Please enter your name",
+        alphaRegexText: "please enter only alpha characters",
         firstName: "Please enter your first name",
         firstNameRegexText: "Please enter valid first name",
         nameRegexText: "Please enter valid name",

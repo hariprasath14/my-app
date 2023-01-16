@@ -25,7 +25,7 @@ const Register = (props) => {
             password: '',
         },
         validationSchema: Yup.object({
-            name: Yup.string().required(config.validationText.name).max(config.appRegex.maxLength40, config.validationText.maxLength40Text).trim(),
+            name: Yup.string().required(config.validationText.name).matches(config.appRegex.alpha, config.validationText.alphaRegexText).max(config.appRegex.maxLength100, config.validationText.maxLength100Text).trim(),
             email: Yup.string().required(config.validationText.email).matches(config.appRegex.email, config.validationText.emailRegexText).trim(),
             password:Yup.string().required(config.validationText.password).matches(config.appRegex.password, config.validationText.passwordRegexText).trim(),
         }),
@@ -36,7 +36,7 @@ const Register = (props) => {
 
 const registerUser= async (values)=>{
     setLoader(true)
-    let data = await appAuthApi("/registerUser",{
+    let data = await appAuthApi("/register",{
         ...values
     }).catch((err)=>{
         console.log(err);
