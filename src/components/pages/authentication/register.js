@@ -10,6 +10,7 @@ import { Row, Col, CardBody, Card, Alert, Container, Form, Input, FormFeedback, 
 import { checkIfFilesAreCorrectType, checkIfFilesAreTooBig } from "../../common/fileValidation";
 import { appAuthApi } from "../../common/api/helper";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 
 
@@ -27,25 +28,28 @@ const Register = (props) => {
         validationSchema: Yup.object({
             name: Yup.string().required(config.validationText.name).matches(config.appRegex.alpha, config.validationText.alphaRegexText).max(config.appRegex.maxLength100, config.validationText.maxLength100Text).trim(),
             email: Yup.string().required(config.validationText.email).matches(config.appRegex.email, config.validationText.emailRegexText).trim(),
-            password:Yup.string().required(config.validationText.password).matches(config.appRegex.password, config.validationText.passwordRegexText).trim(),
+            password: Yup.string().required(config.validationText.password).matches(config.appRegex.password, config.validationText.passwordRegexText).trim(),
         }),
         onSubmit: (values) => {
             registerUser(values);
         }
     });
 
-const registerUser= async (values)=>{
-    setLoader(true)
-    let data = await appAuthApi("/register",{
-        ...values
-    }).catch((err)=>{
-        console.log(err);
-    })
-    if(data){
-        console.log(data);
+    const registerUser = async (values) => {
+        setLoader(true)
+        let data = await appAuthApi("/register", {
+            ...values
+        }).catch((err) => {
+            console.log(err);
+            toast.error(err?.message)
+        })
+        if (data.responseCode === 1) {
+            toast.success(data.responseMessage)
+        } else if (data.responseCode === 0) {
+            toast.error(data.responseMessage)
+        }
+        setLoader(false)
     }
-    setLoader(false)
-}
 
     return (
         <React.Fragment>
@@ -107,7 +111,7 @@ const registerUser= async (values)=>{
                             <Input
                                 name="password"
                                 className="form-control"
-                                type="text"
+                                type="password"
                                 onChange={validation.handleChange}
                                 value={validation.values.password || ""}
                                 invalid={

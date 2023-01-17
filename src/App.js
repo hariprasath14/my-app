@@ -3,10 +3,12 @@ import Nav from './components/pages/navbar/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import pageRoutes from './components/routes/route'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <>
+      <Toaster />
       <Router>
         <Nav />
         <Routes>

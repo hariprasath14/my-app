@@ -10,7 +10,7 @@ import { Row, Col, CardBody, Card, Alert, Container, Form, Input, FormFeedback, 
 import { checkIfFilesAreCorrectType, checkIfFilesAreTooBig } from "../../common/fileValidation";
 import { appAuthApi } from "../../common/api/helper";
 import { Link } from "react-router-dom";
-
+import toast from 'react-hot-toast';
 
 
 const Login = (props) => {
@@ -26,25 +26,29 @@ const Login = (props) => {
         },
         validationSchema: Yup.object({
             email: Yup.string().required(config.validationText.email).matches(config.appRegex.email, config.validationText.emailRegexText).trim(),
-            password:Yup.string().required(config.validationText.password).matches(config.appRegex.password, config.validationText.passwordRegexText).trim(),
+            password: Yup.string().required(config.validationText.password).matches(config.appRegex.password, config.validationText.passwordRegexText).trim(),
         }),
         onSubmit: (values) => {
             loginUser(values);
         }
     });
 
-const loginUser= async (values)=>{
-    setLoader(true)
-    let data = await appAuthApi("/login",{
-        ...values
-    }).catch((err)=>{
-        console.log(err);
-    })
-    if(data){
-        console.log(data);
+    const loginUser = async (values) => {
+        setLoader(true)
+        let data = await appAuthApi("/login", {
+            ...values
+        }).catch((err) => {
+            console.log(err);
+            toast.error(err?.message)
+        })
+        if (data.responseCode === 1) {
+            toast.success(data.responseMessage)
+        } else if (data.responseCode === 0) {
+            toast.error(data.responseMessage)
+        }
+
+        setLoader(false)
     }
-    setLoader(false)
-}
 
     return (
         <React.Fragment>
@@ -89,7 +93,7 @@ const loginUser= async (values)=>{
                             <Input
                                 name="password"
                                 className="form-control"
-                                type="text"
+                                type="password"
                                 onChange={validation.handleChange}
                                 value={validation.values.password || ""}
                                 invalid={
