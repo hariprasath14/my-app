@@ -45,6 +45,7 @@ const Register = (props) => {
         })
         if (data.responseCode === 1) {
             toast.success(data.responseMessage)
+            localStorage.setItem("tmtData",JSON.stringify({email:"yik;"}))
         } else if (data.responseCode === 0) {
             toast.error(data.responseMessage)
         }
