@@ -25,6 +25,9 @@ function Nav() {
               </Link>
             </li>
           })}
+          <li onClick={()=>{
+            localStorage.clear()
+          }}><Link to={"/login"}>Logout</Link></li>
         </ul>
         {!openMenu && <div className='nav-menu my-menu-icon p-2' >
           <span className='cursor-pointer' onClick={() => { setOpenMenu(true) }}>

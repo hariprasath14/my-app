@@ -11,12 +11,11 @@ function App() {
     <>
       <Toaster />
       <Router>
-        <Nav />
         <Routes>
           {pageRoutes && pageRoutes.length > 0 && pageRoutes.map((route, i) => {
             return <Route key={i} path={route.path} element={
-
               <ProtectedRoute redirectTo="/login" authRoute={true}>
+              <Nav />
                 {route.component}
               </ProtectedRoute>
 
