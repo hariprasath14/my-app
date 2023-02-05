@@ -17,5 +17,8 @@ export const authRoutes = [
     { path: "/login", component: <Login /> },
     { path: "/register", component: <Register /> },
 ]
+export const commonRoutes = [
+    { path: "/profile", component: <Home /> },
+]
 
 export default pageRoutes;

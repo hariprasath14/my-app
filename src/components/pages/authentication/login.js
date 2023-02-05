@@ -52,87 +52,93 @@ const Login = (props) => {
         setLoader(false)
     }
 
+
     return (
         <React.Fragment>
-            <Form
-                className="form-horizontal tournament-form"
-                noValidate
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    validation.handleSubmit();
-                    return false;
-                }}
-            >
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-12 mb-3">
-                            <h4 className="make-center-mobile mb-0 mb-md-2">
-                                Login
-                            </h4>
+            <AuthenticationCardUI>
+                <Form
+                    className="form-horizontal tournament-form"
+                    noValidate
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        validation.handleSubmit();
+                        return false;
+                    }}
+                >
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-12 mb-3">
+                                <h4 className="make-center-mobile mb-0 mb-md-2">
+                                    Login
+                                </h4>
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <Label className="form-label">Email</Label>
+                                <Input
+                                    name="email"
+                                    className="form-control"
+                                    type="email"
+                                    onChange={validation.handleChange}
+                                    value={validation.values.email || ""}
+                                    invalid={
+                                        validation.touched.email && validation.errors.email ? true : false
+                                    }
+                                />
+                                {validation.touched.email && validation.errors.email ? (
+                                    <FormFeedback
+                                        type="invalid">{validation.errors.email}</FormFeedback>
+                                ) : null}
+                            </div>
+
+                            <div className="col-md-6 mb-3">
+                                <Label className="form-label">Password</Label>
+                                <Input
+                                    name="password"
+                                    className="form-control"
+                                    type="password"
+                                    onChange={validation.handleChange}
+                                    value={validation.values.password || ""}
+                                    invalid={
+                                        validation.touched.password && validation.errors.password ? true : false
+                                    }
+                                />
+                                {validation.touched.password && validation.errors.password ? (
+                                    <FormFeedback
+                                        type="invalid">{validation.errors.password}</FormFeedback>
+                                ) : null}
+                            </div>
                         </div>
-
-
-                        <div className="col-md-6 mb-3">
-                            <Label className="form-label">Email</Label>
-                            <Input
-                                name="email"
-                                className="form-control"
-                                type="email"
-                                onChange={validation.handleChange}
-                                value={validation.values.email || ""}
-                                invalid={
-                                    validation.touched.email && validation.errors.email ? true : false
-                                }
-                            />
-                            {validation.touched.email && validation.errors.email ? (
-                                <FormFeedback
-                                    type="invalid">{validation.errors.email}</FormFeedback>
-                            ) : null}
-                        </div>
-
-                        <div className="col-md-6 mb-3">
-                            <Label className="form-label">Password</Label>
-                            <Input
-                                name="password"
-                                className="form-control"
-                                type="password"
-                                onChange={validation.handleChange}
-                                value={validation.values.password || ""}
-                                invalid={
-                                    validation.touched.password && validation.errors.password ? true : false
-                                }
-                            />
-                            {validation.touched.password && validation.errors.password ? (
-                                <FormFeedback
-                                    type="invalid">{validation.errors.password}</FormFeedback>
-                            ) : null}
-                        </div>
-
                     </div>
-                </div>
-
-                <div className="mt-5 tmnt-form-submit make-center">
-                    <button
-                        className="btn btn-primary waves-effect waves-light make-center opacity-100"
-                        type="submit"
-                        disabled={loader}
-                    >
-
-                        {loader ?
-                            <ClipLoader
-                                size={24}
-                                color={"#fff"}
-                                aria-label="Loading Spinner"
-                                data-testid="loader"
-                            />
-                            : "Login"}
-                    </button>
-                </div>
-
-            </Form>
-            <div className="mt-5 make-center"><p>Don't have a account? <Link to="/register">Register</Link></p></div>
+                    <div className="mt-5 tmnt-form-submit make-center">
+                        <button
+                            className="btn btn-primary waves-effect waves-light make-center opacity-100"
+                            type="submit"
+                            disabled={loader}
+                        >
+                            {loader ?
+                                <ClipLoader
+                                    size={24}
+                                    color={"#fff"}
+                                    aria-label="Loading Spinner"
+                                    data-testid="loader"
+                                />
+                                : "Login"}
+                        </button>
+                    </div>
+                </Form>
+                <div className="mt-5 make-center"><p>Don't have a account? <Link to="/register">Register</Link></p></div>
+                <div className="mt-0 make-center"><p>About me <Link to="/profile">Profile</Link></p></div>
+            </AuthenticationCardUI>
         </React.Fragment>
     )
 }
 
 export default Login;
+
+export const AuthenticationCardUI = ({ children }) => {
+    return <div className="authentication-card-container">
+        <div className="authentication-card">
+            {children}
+        </div>
+    </div>
+}

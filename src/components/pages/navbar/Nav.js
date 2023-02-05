@@ -6,9 +6,10 @@ function Nav() {
   const [openMenu, setOpenMenu] = useState(false)
   const menuList = [
     { name: "Home", url: "/" },
-     { name: "Movies", url: "/movies" }, 
-     { name: "Tournament", url: "/tournament" }, 
-     { name: "Login", url: "/login" }]
+    { name: "Profile", url: "/profile" },
+    { name: "Tournament", url: "/tournament" },
+    //  { name: "Login", url: "/login" }
+  ]
   return (
     <>
       <nav>
@@ -25,7 +26,7 @@ function Nav() {
               </Link>
             </li>
           })}
-          <li onClick={()=>{
+          <li onClick={() => {
             localStorage.clear()
           }}><Link to={"/login"}>Logout</Link></li>
         </ul>

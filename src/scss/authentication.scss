@@ -1,0 +1,13 @@
+.authentication-card-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .authentication-card {
+        max-width: 500px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+}
