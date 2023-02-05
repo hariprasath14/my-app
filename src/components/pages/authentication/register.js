@@ -9,7 +9,7 @@ import config from "../../../config";
 import { Row, Col, CardBody, Card, Alert, Container, Form, Input, FormFeedback, Label, Spinner } from "reactstrap";
 import { checkIfFilesAreCorrectType, checkIfFilesAreTooBig } from "../../common/fileValidation";
 import { appAuthApi } from "../../common/api/helper";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthenticationCardUI } from "./login";
 
@@ -17,6 +17,7 @@ import { AuthenticationCardUI } from "./login";
 
 const Register = (props) => {
     const [loader, setLoader] = useState(false);
+    let navigate = useNavigate();
     const validation = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
         enableReinitialize: true,
@@ -46,7 +47,7 @@ const Register = (props) => {
         })
         if (data.responseCode === 1) {
             toast.success(data.responseMessage)
-            localStorage.setItem("tmtData", JSON.stringify({ email: "yik;" }))
+            navigate("/login")
         } else if (data.responseCode === 0) {
             toast.error(data.responseMessage)
         }

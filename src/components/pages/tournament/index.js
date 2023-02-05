@@ -1,6 +1,6 @@
 import NavHead from "../navbar/navHeader";
 import "../../../scss/tournament.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MiniMiltia from "./minimiltia";
 import moment from "moment"
 import TournamentRegister from "./gameRegister";
@@ -8,13 +8,14 @@ import { useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
 
 const Tournament = () => {
+    let navigate = useNavigate()
     const [openRegister, setOpenRegister] = useState(false);
     const gameList = [
         {
             name: "Mini Militia",
             path: "/tournament/minimiltia",
             className: "minimiltia",
-            matchDate: "2022-11-29"
+            matchDate: "2023-03-29"
         },
     ]
     const dateExpired = (date) => {
@@ -42,12 +43,12 @@ const Tournament = () => {
                                             </div>
                                             <div className="game-title">
                                                 <p>{game.name}</p>
-                                                {!dateExpired(game.matchDate) ? <Link to={game.path} className="font-size-12">View History</Link>
+                                                {!dateExpired(game.matchDate) ? <p onClick={() => navigate(game.path)} className="redrt-link">View History</p>
                                                     :
-                                                    <Link to={game.path} onClick={(e) => {
+                                                    <p onClick={(e) => {
                                                         e.preventDefault()
                                                         setOpenRegister(!openRegister)
-                                                    }} className="font-size-12">Quick Register</Link>}
+                                                    }} className="redrt-link">Quick Register</p>}
                                                 <div className="ribbon left"></div>
                                                 <div className="ribbon right"></div>
                                             </div>

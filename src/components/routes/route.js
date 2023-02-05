@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import Login from "../pages/authentication/login";
 import Register from "../pages/authentication/register";
 import Error from "../pages/error";
@@ -7,7 +8,7 @@ import Tournament from "../pages/tournament";
 import MiniMiltia from "../pages/tournament/minimiltia";
 
 const pageRoutes = [
-    { path: "/", component: <Home /> },
+    { path: "/", component: <Navigate to="/tournament" /> },
     // {path:"/movies",component:<Movies/>},
     { path: "/tournament", component: <Tournament /> },
     { path: "/tournament/minimiltia", component: <MiniMiltia /> },

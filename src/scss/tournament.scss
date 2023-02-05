@@ -84,6 +84,13 @@ $card-shadow: #24315e40;
                             flex-flow: column;
                             position: relative;
 
+                            .redrt-link {
+                                color: #2196f3;
+                                font-size: 13px;
+                                margin-bottom: 0px;
+                                text-decoration: underline;
+                            }
+
                             .ribbon {
                                 width: $ribbonWidth;
                                 height: $ribbonHeight;

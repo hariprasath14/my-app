@@ -10,8 +10,8 @@ function ProtectedRoute({ children, redirectTo, authRoute }) {
         try {
             data = JSON.parse(data)
         } catch { }
-        if (data.loggedinUser) {
-            console.log(data.loggedinUser);
+        if (data.token) {
+            // console.log(data.token);
             isAuthenticated = true
         }
     }
