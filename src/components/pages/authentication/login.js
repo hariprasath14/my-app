@@ -41,11 +41,11 @@ const Login = (props) => {
             console.log(err);
             toast.error(err?.message)
         })
-        if (data.responseCode === 1 && data.response) {
+        if (data && data.responseCode === 1 && data.response) {
             toast.success(data.responseMessage)
             localStorage.setItem("tmtData", JSON.stringify(data.response))
             navigate("/")
-        } else if (data.responseCode === 0) {
+        } else if (data && data.responseCode === 0) {
             toast.error(data.responseMessage)
         }
 
