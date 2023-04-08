@@ -5,7 +5,11 @@ const menuIcon = <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/sv
 function Nav() {
   const [openMenu, setOpenMenu] = useState(false)
   const menuList = [
-    { name: "Home", url: "/" }, { name: "Movies", url: "/movies" }, { name: "Login", url: "/login" }]
+    { name: "Home", url: "/" },
+    { name: "Profile", url: "/profile" },
+    { name: "Tournament", url: "/tournament" },
+    //  { name: "Login", url: "/login" }
+  ]
   return (
     <>
       <nav>
@@ -17,11 +21,14 @@ function Nav() {
           </li>
           {menuList && menuList?.length > 0 && menuList.map((menu, i) => {
             return <li key={i}>
-              <Link to={menu.url}>
+              <Link to={menu.url} onClick={() => { setOpenMenu(false) }}>
                 {menu.name}
               </Link>
             </li>
           })}
+          <li onClick={() => {
+            localStorage.clear()
+          }}><Link to={"/login"}>Logout</Link></li>
         </ul>
         {!openMenu && <div className='nav-menu my-menu-icon p-2' >
           <span className='cursor-pointer' onClick={() => { setOpenMenu(true) }}>

@@ -1,0 +1,641 @@
+$ribbonColor: #212527e6;
+$ribbonWidth: 60px;
+$halfRibbonWidth: 30px; //Half of width
+$ribbonHeight: 40px;
+$card-shadow: #24315e40;
+
+// .tmnt-content {
+//     background-repeat: no-repeat;
+//     background-color: #f7f9fb;
+//     background-position: top;
+//     background-size: contain;
+// }
+
+.tournament-container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    .game-container {
+        position: relative;
+        padding: 0px 20px;
+        z-index: 1;
+
+        .head {
+            text-align: center;
+
+            p {
+                color: #656c72;
+            }
+        }
+
+        .body {
+            // padding: 60px;
+
+            .game-card {
+                .game-link {
+                    color: inherit;
+                    text-decoration: none;
+
+                    .game-cardbody {
+                        width: 250px;
+                        display: flex;
+                        flex-flow: column;
+                        align-items: center;
+                        justify-content: space-between;
+                        height: 250px;
+                        cursor: pointer;
+                        background-color: #ffffff;
+                        border-radius: 5px;
+                        // border: 1px solid #eeeeee;
+                        box-shadow: 0 2px 4px $card-shadow;
+                        transition: 0.3s;
+                        overflow: hidden;
+
+                        &:hover {
+                            transform: translate(0, -8px);
+                            box-shadow: 2px 10px 10px 3px $card-shadow;
+
+                            // .game-logo {
+                            //     transform: scale(1.2, 1.2);
+                            // }
+                        }
+
+                        .game-logo {
+                            height: 141px;
+                            width: 100%;
+                            transition: 0.4s;
+
+                            &.minimiltia {
+                                background: url(../assets/images/tournament/mm-vs.jpg) top no-repeat #ffffff;
+                                background-position: inherit;
+                                background-size: contain;
+                            }
+                        }
+
+                        .game-title {
+                            padding: 6px;
+                            flex: 1;
+                            display: flex;
+                            align-items: center;
+                            background-color: #ffffff;
+                            width: 100%;
+                            justify-content: center;
+                            flex-flow: column;
+                            position: relative;
+
+                            .redrt-link {
+                                color: #2196f3;
+                                font-size: 13px;
+                                margin-bottom: 0px;
+                                text-decoration: underline;
+                            }
+
+                            .ribbon {
+                                width: $ribbonWidth;
+                                height: $ribbonHeight;
+                                background-color: $ribbonColor;
+                                position: absolute;
+
+                                &.left {
+                                    transform: rotate(270deg);
+                                    left: -10px;
+
+                                }
+
+                                &.right {
+                                    transform: rotate(90deg);
+                                    right: -10px;
+
+                                }
+
+                                &:before {
+                                    content: '';
+                                    position: absolute;
+                                    z-index: 2;
+                                    left: 0;
+                                    bottom: -$halfRibbonWidth;
+                                    border-left: $halfRibbonWidth solid $ribbonColor;
+                                    border-right: $halfRibbonWidth solid $ribbonColor;
+                                    border-bottom: $halfRibbonWidth solid transparent;
+                                }
+                            }
+
+                            p {
+                                font-weight: 500;
+                                margin-bottom: 0px;
+                            }
+
+                            a {
+                                font-size: 13px;
+                            }
+                        }
+
+                        .game-date {
+                            width: 100%;
+                            padding: 6px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            // color: #f7f9fb;
+                            font-size: 14px;
+                            font-weight: 500;
+
+                            &.available {
+                                background-color: #0BBB87;
+                            }
+
+                            &.expired {
+                                background-color: #ed6c66;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    .footer {
+        height: 400px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        display: block;
+        background: transparent;
+        // filter: grayscale(1);
+        background-image: url(../assets/images/tournament/footer-bg.png);
+        background-size: contain;
+        background-repeat: repeat no-repeat;
+        background-position: bottom;
+
+    }
+}
+
+.tmnt-game-container {
+    .game-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+    }
+}
+
+
+.tournament-form {
+    max-width: 900px;
+    margin: 0 auto;
+
+    .tmnt-form-submit {
+        button {
+            width: 250px;
+            min-height: 38px;
+        }
+    }
+
+    input {
+        box-shadow: none !important;
+    }
+
+    .form-control.is-valid {
+        background-image: none;
+    }
+
+    .form-control.is-invalid {
+        background-image: none;
+    }
+
+    .form-control-sm.is-valid {
+        background-image: none;
+    }
+
+    .form-control-sm.is-invalid {
+        background-image: none;
+    }
+
+    .form-control-lg.is-valid {
+        background-image: none;
+    }
+
+    .form-control-lg.is-invalid {
+        background-image: none;
+    }
+}
+
+
+.ship {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-size: 200px 110px;
+    background-image: url(../assets/images/tournament/space-ship.png);
+    background-repeat: no-repeat;
+    z-index: 1;
+
+    &.ship-1 {
+        bottom: 220px;
+        animation: move-ship-1 60s linear infinite;
+    }
+
+    &.ship-2 {
+        bottom: 130px;
+        animation: move-ship-2 60s linear infinite;
+    }
+}
+
+
+@keyframes move-ship-1 {
+    0% {
+        right: calc(0% - 200px);
+    }
+
+    100% {
+        right: calc(100% + 200px);
+
+    }
+}
+
+@keyframes move-ship-2 {
+    0% {
+        right: calc(0% - 1000px);
+    }
+
+    100% {
+        right: calc(100% + 200px);
+
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .ship {
+        height: 100px;
+
+        &.ship-1 {
+            bottom: 150px;
+        }
+
+        &.ship-2 {
+            bottom: 100px;
+        }
+    }
+}
+
+
+//
+// VARIABLES
+// ---------------------------
+$breakpoint-sm: 24em;
+$breakpoint-lg: 62em;
+$breakpoint-xl: 72em;
+
+
+//
+// TOURNAMENT BRACKET
+// ---------------------------
+.tmnt-map-layout {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+        padding: 0px;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        flex-direction: row;
+    }
+}
+
+.tmnt-map-layout-round {
+    display: block;
+    margin-left: -3px;
+    flex: 1;
+
+    .final-between {
+        display: none;
+
+        @media (max-width: $breakpoint-lg) {
+            display: block;
+        }
+    }
+}
+
+.tmnt-map-layout-round-title {
+    color: #9e9e9e;
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 0.5em;
+}
+
+.tmnt-map-layout-list {
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    justify-content: center;
+    height: 100%;
+    min-height: 100%;
+    border-bottom: 1px dashed transparent;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    transition: padding 0.2s ease-in-out, margin 0.2s ease-in-out;
+
+    @media (max-width: $breakpoint-sm) {
+        padding-bottom: 1em;
+        margin-bottom: 1em;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-right: 1px dashed transparent;
+        border-bottom: 0;
+    }
+
+    .tmnt-map-layout-round:last-child & {
+        border: 0;
+    }
+}
+
+.tmnt-map-layout-item {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 2% 0;
+    width: 48%;
+    transition: padding 0.2s linear;
+
+    @media (min-width: $breakpoint-lg) {
+        &.direct-final {
+            .tmnt-map-layout-match {
+                &::before {
+                    content: unset;
+                }
+
+                &::after {
+                    top: 48%;
+                    border-radius: 0px;
+                    left: calc(-101% + 5px);
+                    width: calc(107% + 4px);
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+        &.direct-final {
+            .tmnt-map-layout-match {
+                &::after {
+                    left: calc(-101% + 6px);
+                    width: calc(107% + 1px);
+                }
+            }
+        }
+    }
+
+    @media (min-width:1500px) {
+        &.direct-final {
+            .tmnt-map-layout-match {
+                &::after {
+                    left: -324px;
+                    width: 348px;
+                }
+            }
+        }
+    }
+
+    &:nth-child(odd) {
+        margin-right: 2%;
+    }
+
+    &:nth-child(even) {
+        margin-left: 2%;
+    }
+
+    &::after {
+        transition: width 0.2s linear;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        width: 100%;
+
+        &:nth-child(odd),
+        &:nth-child(even) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    @media (min-width: $breakpoint-sm) {
+        padding: 0.5em 1.5em;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        // flex-grow: 2;
+        width: 100%;
+
+        &:nth-child(odd),
+        &:nth-child(even) {
+            margin: 0;
+        }
+
+        &::after {
+            position: absolute;
+            right: 0;
+            content: '';
+            display: block;
+            width: 1.5em;
+            height: 55%;
+            border-right: 2px solid #9e9e9e;
+        }
+
+        &:nth-child(odd)::after {
+            top: 65%;
+            border-top: 2px solid #9e9e9e;
+            transform: translateY(-1px);
+
+        }
+
+        &:nth-child(even)::after {
+            bottom: 42%;
+            border-bottom: 2px solid #9e9e9e;
+            transform: translateY(1px);
+            height: 42%;
+
+        }
+
+        .tmnt-map-layout-round:first-child & {
+            padding-left: 0;
+        }
+
+        .tmnt-map-layout-round:last-child & {
+            padding-right: 0;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        .tmnt-map-layout-round:nth-last-child(2) & {
+            &::after {
+                border-radius: 0;
+                border-right: 0;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-xl) {
+        padding: 0.5em 1.5em;
+
+        &::after {
+            width: 1.5em;
+        }
+    }
+}
+
+
+.tmnt-map-layout-match {
+    display: flex;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 1em;
+    height: 100px;
+    border: 1px solid transparent;
+    border-radius: 0.1em;
+    box-shadow: 0 2px 0 0 #e5e5e5;
+    outline: none;
+    cursor: pointer;
+    transition: padding 0.2s ease-in-out, border 0.2s linear;
+
+    &:focus {
+        border-color: #2196F3;
+    }
+
+    &::before,
+    &::after {
+        transition: all 0.2s linear;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        padding: 0.75em 0.5em;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+
+        &::before,
+        &::after {
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            content: '';
+            display: block;
+            width: 1.5em;
+            height: 25px;
+            border-left: 2px solid #9e9e9e;
+        }
+
+        &::before {
+            bottom: 50%;
+            border-bottom: 2px solid #9e9e9e;
+            transform: translate(0, 1px);
+
+        }
+
+        &::after {
+            top: 50%;
+            border-top: 2px solid #9e9e9e;
+            transform: translate(0, -1px);
+
+        }
+    }
+
+    @media (min-width: $breakpoint-xl) {
+
+        &::before,
+        &::after {
+            width: 1.5em;
+        }
+
+        &::before {
+            transform: translate(0, 1px);
+        }
+
+        &::after {
+            transform: translate(0, -1px);
+        }
+    }
+}
+
+.tmnt-map-layout-round-champion {
+    .tmnt-map-layout-match {
+
+        &::before {
+            height: 39%;
+
+
+        }
+
+        &::after {
+            height: 24%;
+
+        }
+    }
+
+}
+
+.tmnt-map-layout-round-qulifier2 {
+    .tmnt-map-layout-item {
+        justify-content: flex-end;
+
+        &:first-child {
+            .tmnt-map-layout-match {
+                &::before {
+                    content: unset;
+                }
+
+                &::after {
+                    top: 65%;
+                }
+            }
+        }
+
+        &:last-child {
+            justify-content: center;
+        }
+    }
+}
+
+.tmnt-map-layout-round-final {
+    .tmnt-map-layout-item {
+        &.direct-final {
+            &::after {
+                bottom: 52%;
+                width: calc(1.5em - 1px);
+                right: 1px;
+            }
+        }
+
+        &:last-child {
+            &::after {
+                top: 50%;
+            }
+        }
+
+        @media (max-width: $breakpoint-lg) {
+            margin: 0px auto;
+        }
+    }
+}
+
+
+.tmnt-map-layout-round:first-child .tmnt-map-layout-match {
+
+    &::before,
+    &::after {
+        display: none;
+    }
+}

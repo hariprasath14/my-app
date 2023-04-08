@@ -1,8 +1,14 @@
 body {
   max-width: 1920px;
-  margin: 0  auto;
-  /* background-color: ; */
+  margin: 0 auto;
+  /* background-color: #f7f9fb; */
+  background-color: #f1f1f1;
   min-width: 300px;
-  cursor:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;
   /* cursor:url("http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif"), auto; */
+}
+
+.mainframe {
+  height: 100vh;
+  overflow-y: auto;
 }

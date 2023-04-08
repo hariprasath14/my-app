@@ -1,22 +1,73 @@
-.my-menu-icon{
+.my-menu-icon {
   // fill: #111;
   fill: #747272;
-  &:hover{
+
+  &:hover {
     // fill: #a1a0a0;
     fill: #a1a0a0;
   }
 }
-.my-menu-close-icon{
+
+.my-menu-close-icon {
   fill: white;
-  &:hover{
+
+  &:hover {
     fill: darkgrey;
   }
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer !important;
 }
 
-.opacity-0{
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.opacity-0 {
   opacity: 0 !important;
+}
+
+.make-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .make-center-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// .page-content {
+//   padding: 0px 20px;
+// }
+
+$link-color: #2196f3;
+$link-active-color: #1c83d5;
+
+.register-link {
+  color: $link-color;
+  cursor: pointer;
+  padding: 5px;
+}
+
+a {
+  color: $link-color;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $link-color;
+  border-color: $link-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $link-active-color;
+    border-color: $link-active-color;
+  }
 }
