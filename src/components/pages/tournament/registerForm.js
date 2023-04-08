@@ -52,7 +52,7 @@ const TournamentForm = (props) => {
             email: Yup.string().matches(config.appRegex.email, config.validationText.emailRegexText),
         }),
         onSubmit: (values) => {
-            props.register(values)
+            // props.register(values)
         }
     });
 

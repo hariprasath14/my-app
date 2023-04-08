@@ -16,9 +16,9 @@ const MiniMiltia = () => {
 
 
   useEffect(() => {
-    getRegisterData()
-    getPlayoffSchedule()
-    getTournamentList()
+    // getRegisterData()
+    // getPlayoffSchedule()
+    // getTournamentList()
   }, [])
 
   let controller;
@@ -39,38 +39,38 @@ const MiniMiltia = () => {
 
 
   const createPlayoffSchedule = async () => {
-    let data = await tmntPostApi(`/createPlayOff`, {
-      create: 1,
-      tmtName: "Test1"
-    }).catch((err) => {
-      console.log(err);
-    })
-    if (data) {
-      console.log(data);
-      getPlayoffSchedule()
-    }
+    // let data = await tmntPostApi(`/createPlayOff`, {
+    //   create: 1,
+    //   tmtName: "Test1"
+    // }).catch((err) => {
+    //   console.log(err);
+    // })
+    // if (data) {
+    //   console.log(data);
+    //   getPlayoffSchedule()
+    // }
   }
 
-  const getTournamentList = async () => {
-    let data = await tmntPostApi(`/getTmtList`, {
-      admin: 1
-    }).catch((err) => {
-      console.log(err);
-    })
-    if (data) {
-      console.log(data.response);
-    }
-  }
+  // const getTournamentList = async () => {
+  //   let data = await tmntPostApi(`/getTmtList`, {
+  //     admin: 1
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  //   if (data) {
+  //     console.log(data.response);
+  //   }
+  // }
 
   const getPlayoffSchedule = async () => {
-    let data = await tmntPostApi(`/getPlayOff`, {
-      tmtID: 7
-    }).catch((err) => {
-      console.log(err);
-    })
-    if (data) {
-      setMatchSchedule(data.response)
-    }
+    // let data = await tmntPostApi(`/getPlayOff`, {
+    //   tmtID: 7
+    // }).catch((err) => {
+    //   console.log(err);
+    // })
+    // if (data) {
+    //   setMatchSchedule(data.response)
+    // }
   }
 
   return (
