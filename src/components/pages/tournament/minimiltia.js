@@ -112,10 +112,9 @@ const MiniMiltia = () => {
               })}
             </tbody>
           </table>}
-          <button onClick={() => {
-            // createSchedule();
+          {/* <button onClick={() => {
             createPlayoffSchedule()
-          }} className="my-5">Create Schedule</button>
+          }} className="my-5">Create Schedule</button> */}
 
           {matchSchedule && matchSchedule?.length > 0 && <table className="tmnt-table">
             <thead>

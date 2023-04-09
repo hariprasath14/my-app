@@ -6,6 +6,7 @@ import gunFireMp3 from '../../../assets/audio/bullet.mp3'
 import johnyMp3 from '../../../assets/audio/johny.mp3'
 import thunderMp3 from '../../../assets/audio/thunder.mp3'
 import '../../../scss/genaral.scss'
+import NavHead from '../navbar/navHeader';
 
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
   const [frontRow, setfrontRow] = useState([]);
   const [backRow, setbackRow] = useState([]);
   const [thunder, setThunder] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
   const timeOutID = useRef(null)
   useEffect(() => {
     gunFire ? audio.play() : audio.pause()
@@ -34,19 +36,19 @@ function Home() {
   useEffect(() => {
     if (playjohny) {
       thunderBGM.play()
-    } 
-    timeOutID.current=setTimeout(() => {
+    }
+    timeOutID.current = setTimeout(() => {
       playjohny ? johnyBGM.play() : johnyBGM.pause()
     }, 3000);
   },
     [playjohny, thunderBGM, johnyBGM]
   )
-  useEffect(()=>{
-    return () => {     
+  useEffect(() => {
+    return () => {
       stopAll()
       console.log("in cleanup")
-  }
-  },[])
+    }
+  }, [])
   const fetchOnScroll = (e) => {
     if (e.target.scrollTop > 400) {
       sethideRain(true)
@@ -57,6 +59,7 @@ function Home() {
   const makeThunder = () => {
     setTimeout(() => {
       setThunder(true)
+      setShowBanner(true)
     }, 5000);
   }
   const makeItRain = () => {
@@ -82,7 +85,7 @@ function Home() {
     };
   }
   const stopAll = () => {
-    clearTimeout(timeOutID.current)   
+    clearTimeout(timeOutID.current)
     johnyBGM.pause()
     johnyBGM.currentTime = 0
     thunderBGM.pause()
@@ -96,6 +99,18 @@ function Home() {
     <div className='home-container'
       onScroll={(e) => { fetchOnScroll(e); }}
     >
+      <NavHead />
+
+      {
+        showBanner && <div class="falling-banner">
+          <div class="rope"></div>
+          <div class="shake-container">
+            <div class="message-box">
+              <p >Web Application developer</p>
+            </div>
+          </div>
+        </div>
+      }
       {/* <Nav/> */}
       <div className='d-flex profile-container rain-flow back-row-toggle splat-toggle additional'>
         <img src={myImage} className={`profile-pic ${frontRow?.length > 0 ? "filter-profile" : ""}  ${thunder ? "thunder" : ""}`} alt="" />
